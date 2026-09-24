@@ -1,0 +1,58 @@
+[
+  {
+    "concept_id": "C04",
+    "qwen": 8,
+    "gemini": 8,
+    "rel_growth": 7.014,
+    "past_n": 7,
+    "reliable": false
+  },
+  {
+    "concept_id": "C05",
+    "qwen": 7,
+    "gemini": 4,
+    "rel_growth": 5.234,
+    "past_n": 578,
+    "reliable": true
+  },
+  {
+    "concept_id": "C06",
+    "qwen": 8,
+    "gemini": 8,
+    "rel_growth": 3.585,
+    "past_n": 368,
+    "reliable": true
+  },
+  {
+    "concept_id": "C02",
+    "qwen": 8,
+    "gemini": 9,
+    "rel_growth": 3.058,
+    "past_n": 2928,
+    "reliable": true
+  },
+  {
+    "concept_id": "C00",
+    "qwen": 8,
+    "gemini": 8,
+    "rel_growth": 2.47,
+    "past_n": 832,
+    "reliable": true
+  },
+  {
+    "concept_id": "C01",
+    "qwen": 7,
+    "gemini": 7,
+    "rel_growth": 0.585,
+    "past_n": 6,
+    "reliable": false
+  },
+  {
+    "concept_id": "C03",
+    "qwen": 7,
+    "gemini": 7,
+    "rel_growth": 0.557,
+    "past_n": 42,
+    "reliable": false
+  }
+]
