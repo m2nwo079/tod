@@ -4,3 +4,5 @@ pandas
 scikit-learn
 networkx
 python-louvain
+matplotlib
+numpy
