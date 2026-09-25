@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>유망하다는 판정은 무엇을 근거로 하는가?</title>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{--ink:#22262b;--ink-soft:#5c6570;--paper:#f4f2ec;--paper-edge:#e4e1d7;--rule:#c8c2b4;--wine:#2f5d50;--wine-soft:#d8e4df;--gold:#a9761a;--up:#2f6f5e;--down:#a13b32;--maxw:760px}
+  *{box-sizing:border-box}html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Pretendard Variable",Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,"Helvetica Neue","Segoe UI","Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.7;font-size:18px;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  .controls{position:sticky;top:0;z-index:50;background:rgba(244,242,236,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+  .controls-inner{max-width:var(--maxw);margin:0 auto;padding:10px 28px;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+  .toggle-group{display:flex;align-items:center;gap:8px}
+  .toggle-group .tlabel{font-size:11px;letter-spacing:.06em;color:var(--ink-soft);font-weight:600}
+  .seg{display:inline-flex;border:1px solid var(--rule);border-radius:6px;overflow:hidden;background:#fff}
+  .seg button{border:0;background:transparent;cursor:pointer;font-family:inherit;font-size:13px;padding:6px 14px;color:var(--ink-soft);transition:background .15s,color .15s}
+  .seg button:hover{color:var(--ink)}
+  .seg button.active{background:var(--wine);color:#fff;font-weight:600}
+  .seg button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+  header{border-bottom:3px double var(--ink);padding:52px 0 34px;margin-bottom:8px}
+  .kicker{font-size:12.5px;letter-spacing:.06em;color:var(--wine);font-weight:600;margin-bottom:20px}
+  h1{font-size:38px;line-height:1.22;margin:0 0 22px;font-weight:800;letter-spacing:-.02em}
+  .standfirst{font-size:20px;color:var(--ink-soft);margin:0 0 26px;line-height:1.55}
+  .byline{font-size:13px;color:var(--ink-soft);display:flex;flex-wrap:wrap;gap:8px 18px;border-top:1px solid var(--rule);padding-top:16px}
+  .byline span b{color:var(--ink);font-weight:600}
+  section{padding:30px 0}
+  .sec-num{font-size:13px;font-weight:700;color:var(--wine);letter-spacing:.04em}
+  h2{font-size:26px;margin:4px 0 18px;font-weight:800;letter-spacing:-.02em;line-height:1.3}
+  p{margin:0 0 18px}
+  a{color:var(--wine)}
+  .abstract{background:#fff;border:1px solid var(--paper-edge);border-left:4px solid var(--wine);padding:24px 28px;margin:4px 0 12px;font-size:16.5px;line-height:1.65}
+  .abstract .lbl{font-size:12px;letter-spacing:.08em;color:var(--wine);font-weight:700;margin-bottom:10px}
+  .abstract p:last-child{margin-bottom:0}
+  .lede{font-size:19px}
+  figure{margin:30px 0;background:#fff;border:1px solid var(--paper-edge);padding:22px 22px 16px}
+  figcaption{font-size:13px;color:var(--ink-soft);line-height:1.55;margin-top:14px;padding-top:12px;border-top:1px solid var(--paper-edge)}
+  figcaption b{color:var(--ink);font-weight:600}
+  .fig-title{font-size:15px;font-weight:700;margin-bottom:16px;color:var(--ink)}
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  .grid{stroke:var(--paper-edge);stroke-width:1}
+  .tick-txt{font-size:11px;fill:var(--ink-soft)}
+  .bar-lbl{font-size:12px;fill:var(--ink)}
+  .val-lbl{font-size:12px;font-weight:700;fill:var(--ink)}
+  .legend-txt{font-size:11.5px;fill:var(--ink-soft)}
+  table{border-collapse:collapse;width:100%;margin:24px 0;font-size:15px}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--paper-edge)}
+  thead th{border-bottom:2px solid var(--ink);font-size:12px;letter-spacing:.03em;color:var(--ink-soft)}
+  td.num{font-variant-numeric:tabular-nums;text-align:right}
+  th.num{text-align:right}
+  tr.highlight td{background:var(--wine-soft);font-weight:700}
+  .pull{font-size:22px;line-height:1.45;color:var(--ink);border-left:3px solid var(--gold);padding:4px 0 4px 22px;margin:30px 0}
+  .briefs{margin:24px 0}
+  .brief{background:#fff;border:1px solid var(--paper-edge);border-top:3px solid var(--wine);padding:20px 22px;margin-bottom:16px}
+  .brief-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--paper-edge)}
+  .brief-name{font-size:17px;font-weight:800}
+  .brief-dvf{font-size:12.5px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .brief-dvf b{color:var(--wine);font-weight:700}
+  .brief dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 16px}
+  .brief dt{font-size:12px;font-weight:700;color:var(--wine);white-space:nowrap;padding-top:2px}
+  .brief dd{margin:0;font-size:14.5px;line-height:1.55}
+  @media (max-width:520px){.brief dl{grid-template-columns:1fr}.brief dt{padding-top:8px}}
+  .method{background:#fdfcfa;border:1px dashed var(--rule);padding:18px 22px;font-size:14.5px;color:var(--ink-soft);line-height:1.65;margin:0 0 18px}
+  .method code{background:var(--paper-edge);padding:1px 5px;border-radius:3px;font-size:13px}
+  footer{border-top:3px double var(--ink);margin-top:40px;padding:30px 0 80px;font-size:13px;color:var(--ink-soft)}
+  @media (max-width:620px){body{font-size:17px}h1{font-size:28px}.controls-inner{gap:12px;padding:8px 20px}.seg button{padding:6px 11px;font-size:12px}}
+  @media (prefers-reduced-motion:no-preference){.reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}.reveal.in{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<div class="controls">
+  <div class="controls-inner">
+    <div class="toggle-group">
+      <span class="tlabel" data-t="ui_lang">언어</span>
+      <div class="seg" role="group" aria-label="Language">
+        <button id="lang-ko" class="active" onclick="setLang('ko')">한국어</button>
+        <button id="lang-en" onclick="setLang('en')">English</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<header>
+  <div class="wrap">
+    <div class="kicker" data-slot="kicker"></div>
+    <h1 data-slot="title"></h1>
+    <p class="standfirst" data-slot="standfirst"></p>
+    <div class="byline" data-slot="byline"></div>
+  </div>
+</header>
+
+<div class="wrap" id="report"></div>
+
+<footer><div class="wrap" data-slot="footer"></div></footer>
+
+<script>
+(function(){
+"use strict";
+
+var UI={ui_lang:{ko:"언어",en:"Language"}};
+
+var C={
+ kicker:{ko:"강화학습 · LLM 유망성 판정 검증 연구",en:"Reinforcement Learning · LLM Promise-Judgment Validation"},
+ title:{ko:"유망하다는 판정은 무엇을 근거로 하는가?",en:"On what does a 'promising' judgment rest?"},
+ standfirst:{ko:"처방적 기술기회 발굴 파이프라인은 LLM에게 어느 기술 개념이 유망한지 묻는다. 그러나 그 판정이 실제 확산과 일치하는지는 검증된 바 없다. 과거(2015–2019) 강화학습 문헌으로 개념을 생성하고, 이후(2021–2024)의 실제 확산을 정답으로 삼아 그 판정을 되짚는다.",
+   en:"A prescriptive technology-opportunity pipeline asks an LLM which technology concepts are promising. Whether that judgment matches actual diffusion has gone unverified. This study generates concepts from past (2015–2019) reinforcement-learning literature and audits the judgment against later (2021–2024) diffusion as ground truth."},
+ byline:{ko:[["데이터","OpenAlex 공개 API"],["도메인","강화학습 (topic T10462)"],["표본","개념 7개 · 과거 문헌 4,000편"],["심사자","Qwen3-8B · Gemini"]],
+   en:[["Data","OpenAlex public API"],["Domain","Reinforcement Learning (topic T10462)"],["Sample","7 concepts · 4,000 past works"],["Judges","Qwen3-8B · Gemini"]]},
+ footer:{ko:"연구 재현 · 강화학습 기술기회 발굴 · 데이터: OpenAlex 공개 API · 무료 티어(OpenAlex · Gemini · Colab T4)에서 실행 · 전체 파이프라인은 저장소 README 참조.",
+   en:"Reproduction study · RL technology opportunity discovery · Data: OpenAlex public API · Run entirely on free tiers (OpenAlex · Gemini · Colab T4) · Full pipeline in the repository README."}
+};
+
+var SECTIONS=[
+ {type:"abstract",body:{
+  ko:"기술기회 발굴에서 어느 개념이 유망한지는 LLM 심사자의 정성 판정에 의존하며, 그 판정이 실제 확산과 일치하는지는 검증되지 않는다. 본 연구는 과거 슬라이스(2015–2019)의 강화학습 문헌으로 기술지식그래프를 구축하고, 커뮤니티 탐지와 링크 예측을 거쳐 개념 7개를 서술한 뒤, 성격이 다른 두 심사자(Qwen3-8B·Gemini)로 각 개념의 유망성을 1–9로 판정하였다. 이어 각 개념의 미래 슬라이스(2021–2024) 확산을 분야 전체 성장 대비 상대값으로 측정해 정답으로 삼았다. 판정과 확산을 대조한 결과, 두 심사자가 갈린 유일한 개념에서 정답은 낮은 점수를 준 대형 모델이 아니라 소형 모델을 지지하였다. 나아가 서술에서 시대 식별 단서를 제거해 재판정하는 완화 실험에서, 대형 모델의 점수는 크게 이동하여 확산과의 순위 상관이 음에서 양으로 뒤집혔다 — 판정이 사후 지식에 오염되어 있었음을 시사한다. 마지막으로 확산 신호에 근거한 DVF 점수화는, 누수로 왜곡된 유망성 판정이 놓친 실제 1위 개념을 최상위로 되돌렸다. 표본이 작아 상관계수는 유의하지 않으며, 결과는 방향성으로 제시한다.",
+  en:"In technology opportunity discovery, which concept counts as promising rests on an LLM judge's qualitative verdict, and whether that verdict matches actual diffusion goes unverified. This study builds a technology knowledge graph from a past slice (2015–2019) of reinforcement-learning literature, narrates seven concepts through community detection and link prediction, and scores each for promise (1–9) with two judges of different scale (Qwen3-8B and Gemini). Each concept's future-slice (2021–2024) diffusion, normalized by field-wide growth, then serves as ground truth. On the one concept where the judges disagreed, the truth sided with the smaller model, not the larger one that scored it low. In a mitigation experiment that strips era-identifying cues from the descriptions and re-judges, the larger model's scores moved sharply and its rank correlation with diffusion flipped from negative to positive — evidence that the judgment was contaminated by hindsight. Finally, DVF scoring grounded in the diffusion signal restored to the top the very concept the leaked judgment had missed. The sample is small, so correlations are not significant and results are reported as directions."}},
+
+ {type:"text",num:"동기",
+  h:{ko:"연구 동기",en:"Motivation"},
+  p:{ko:["이 연구는 그래프 기반 처방적 기술기회 발굴 파이프라인에서 출발하였다. 해당 방법은 기술 문서에서 지식그래프를 세우고, 잠재 관계를 예측하고, 구조적 테마를 찾아, 이를 서술한 뒤, 마지막으로 LLM-as-a-Judge로 유망한 개념을 선별한다. 파이프라인 전체가 이 마지막 판정으로 수렴하지만, 정작 그 판정이 옳은지를 대조할 외부 정답은 방법 안에 존재하지 않는다.",
+        "여기서 물음이 생긴다. LLM이 어느 개념을 유망하다고 부를 때, 그것은 개념의 본질을 읽은 판단인가, 아니면 그 개념이 이후 어떻게 되었는지를 이미 아는 상태에서 내린 사후적 판단인가. 과거 시점의 개념이라면 그 흥망은 이미 현대 LLM의 학습 데이터에 담겨 있다. 판정의 청정성이 처음부터 위협받는 것이다.",
+        "이 프로젝트는 그 물음을 공개적으로 검증 가능한 데이터로 다룬다. 과거 슬라이스로만 개념을 만들고, 그 이후의 실제 확산을 정답으로 삼아 판정을 되짚는다. 방법 전체를 완벽히 재현하는 것이 목표가 아니라, 가장 방어가 약한 판정 단계를 정답과 대조하는 것이 목표이다."],
+     en:["This study began from a graph-based prescriptive pipeline for technology opportunity discovery. The method builds a knowledge graph from technical documents, predicts latent relations, detects structural themes, narrates them, and finally selects promising concepts with an LLM-as-a-judge. The whole pipeline converges on that last verdict, yet no external ground truth exists within the method to check whether the verdict is right.",
+        "A question follows. When an LLM calls a concept promising, is that a reading of the concept itself, or a judgment made already knowing how the concept later fared? For a concept from a past period, its rise and fall is already in a modern LLM's training data. The cleanliness of the judgment is threatened from the outset.",
+        "This project addresses that question on openly verifiable data. Concepts are generated from a past slice alone, and the judgment is audited against the actual diffusion that followed. The aim is not to reproduce the whole method faithfully, but to confront its least defensible stage — the judgment — with ground truth."]},
+  method:{ko:"이 연구는 공개 데이터를 이용한 독립 실험이며, 전 과정을 무료 티어(OpenAlex 무료 키, Gemini 무료, Colab T4)에서 실행하였다. 무거운 구성요소는 무료 환경에 맞춰 경량 대체하였음을 밝힌다.",
+     en:"This is an independent study on public data, run end to end on free tiers (an OpenAlex free key, Gemini's free tier, Colab T4). Heavier components were replaced with lightweight equivalents to fit the free environment."}},
+
+ {type:"text",num:"01",lede:true,
+  h:{ko:"유망성이라는 판정",en:"The judgment called promise"},
+  p:{ko:["과거 슬라이스는 강화학습으로 좁혔다. 2015–2019 구간은 심층 강화학습이 이미 활발하던 시기라, 이후 어느 개념이 떴는지를 되짚을 정답이 충분히 존재한다. OpenAlex에서 해당 토픽의 논문 4,000편을 인용순으로 수집하고, 제목·초록의 용어 공출현으로 기술지식그래프를 세웠다. 용어는 빈도가 아니라 변별력으로 골랐고, 간선은 정규화 상호정보량으로 걸러 흔해서 함께 나오는 쌍을 제거하였다.",
+        "커뮤니티 탐지로 7개 테마를 얻고, 각 테마에서 아직 이어지지 않은 잠재 간선을 링크 예측으로 뽑아, 그 조합이 시사하는 개념을 LLM으로 서술하였다. 여기까지가 파이프라인의 재현이며, 산출물은 개념 7개다.",
+        "판정은 단일 심사자에 맡기지 않았다. 규모가 다른 두 모델 — 로컬의 소형 개방 모델(Qwen3-8B)과 상용 API의 대형 모델(Gemini) — 이 각 개념의 유망성을 1–9로, 세 번씩 채점해 중앙값을 취하였다. 계열이 다른 두 심사자를 쓴 이유는, 판정이 특정 모델에 흔들리는지 아니면 모델을 넘어 일관되는지를 함께 보기 위해서다."],
+     en:["The past slice was narrowed to reinforcement learning. The 2015–2019 window was a period when deep RL was already active, so ample ground truth exists for auditing which concepts later rose. From OpenAlex, 4,000 works in the topic were collected by citation, and a technology knowledge graph was built from term co-occurrence in titles and abstracts. Terms were chosen by distinctiveness, not frequency, and edges filtered by normalized pointwise mutual information to drop pairs that merely co-occur because both are common.",
+        "Community detection yielded seven themes; within each, link prediction surfaced latent, not-yet-connected edges, and an LLM narrated the concept the combination suggests. This much reproduces the pipeline, and the output is seven concepts.",
+        "The judgment was not left to a single judge. Two models of different scale — a small open model run locally (Qwen3-8B) and a large commercial API model (Gemini) — each scored every concept for promise (1–9), three times, with the median taken. Two judges of different families were used to see whether the judgment wavers with the model or holds across models."]},
+  method:{ko:"누수 방지. 개념 생성에는 과거 슬라이스(2015–2019)만 사용하고, 경계 구간(2020)은 버퍼로 비워 정답 측정 구간(2021–2024)과 분리하였다. 이로써 수집·시점상의 미래 데이터 누수는 차단된다. 다만 심사 모델 자체의 사후 지식 누수는 별도 문제로, 5절에서 다룬다.",
+     en:"Leakage guard. Only the past slice (2015–2019) is used to generate concepts, and the boundary year (2020) is left empty as a buffer, separated from the evaluation window (2021–2024). This blocks collection- and timing-based future leakage. The judge model's own hindsight leakage is a separate matter, treated in section 5."}},
+
+ {type:"fig1"},
+
+ {type:"text",num:"02",
+  h:{ko:"판정이 갈린 단 하나의 지점",en:"The one point where the judgment split"},
+  p:{ko:["두 심사자는 대체로 일치하였다. 일곱 개념 중 다섯에서 점수가 같았고, 대부분 7–8에 몰렸다. 이 쏠림 자체가 첫 번째 관찰이다. 유망성 판정은 개념들을 순위로 가르는 변별력이 약했다.",
+        "의미 있는 불일치는 오직 한 곳, 표본효율 정책최적화 개념(C05)에서 나타났다. 소형 모델은 이를 7로 높게, 대형 모델은 4로 낮게 보았다. 판정만으로는 어느 쪽이 옳은지 알 수 없다. 정답이 필요하다.",
+        "두 심사자의 일치도 자체는 높았다. 순위 상관(Spearman)은 0.907, 정확 일치율은 71.4%(7개 중 5개), 평균 점수 차이는 0.57이었다. 그러나 이 높은 일치가 곧 정확성을 뜻하지는 않는다. 두 모델이 나란히 대부분을 7–8로 몰아준 것일 수도 있기 때문이다. 일치는 정답과의 대조로만 검증된다."],
+     en:["The two judges largely agreed. On five of seven concepts the scores matched, and most clustered at 7–8. That clustering is the first observation: the promise judgment had weak power to separate concepts into a ranking.",
+        "The one meaningful disagreement appeared for a single concept — sample-efficient policy optimization (C05). The small model scored it high (7), the large model low (4). The judgment alone cannot say which is right. Ground truth is needed.",
+        "Agreement between the judges was itself high: rank correlation (Spearman) 0.907, exact-match rate 71.4% (five of seven), mean score difference 0.57. Yet high agreement does not imply accuracy — the two models may simply have pushed most concepts to 7–8 together. Agreement is validated only against ground truth."]}},
+
+ {type:"text",num:"03",
+  h:{ko:"미래 확산을 정답으로",en:"Diffusion as ground truth"},
+  p:{ko:["각 개념을 대표 용어로 표현하고, 미래 슬라이스에서 그 용어를 담은 문헌의 성장을 측정하였다. 2021–2024는 강화학습 전체가 커진 시기라 절대 성장은 거의 모든 개념에서 나타난다. 따라서 분야 전체 성장(약 1.71배)으로 나눈 상대값을 확산의 척도로 삼았다. 1.0을 넘으면 분야보다 빠르게 퍼진 것이다.",
+        "표는 두 판정과 실제 확산을 나란히 놓는다. 판정이 갈렸던 C05는 신뢰할 수 있는 개념 가운데 확산 1위였다(상대 확산 5.23배). 즉 이 개념에서 정답은 높게 본 소형 모델을 지지하고, 낮게 본 대형 모델을 반증한다. 나머지 개념들은 두 심사자가 모두 8 부근으로 뭉쳐 변별이 없었고, 유일하게 갈린 지점에서 소형 모델이 옳았다.",
+        "다만 과거 편수가 극히 적은 세 개념(C04·C01·C03)은 성장비가 몇 편 차이로 요동쳐 신뢰도가 낮다. 이들을 저신뢰로 표시하고, 해석은 신뢰할 수 있는 네 개념에 무게를 둔다."],
+     en:["Each concept was represented by seed terms, and the growth of literature carrying those terms was measured in the future slice. Because RL as a whole grew over 2021–2024, absolute growth appears for nearly every concept; the relative value, divided by field-wide growth (~1.71×), is therefore taken as the measure of diffusion. Above 1.0 means it spread faster than the field.",
+        "The table sets the two judgments beside actual diffusion. C05, where the judges split, was the top diffuser among reliable concepts (relative diffusion 5.23×). On this concept the truth backs the small model that scored it high and rebuts the large model that scored it low. The remaining concepts clustered near 8 for both judges with no separation, and on the one point of disagreement the small model was right.",
+        "Three concepts with very few past-window papers (C04, C01, C03) have growth ratios that swing on a handful of papers and are unreliable. These are flagged low-confidence, and interpretation weights the four reliable concepts."]},
+  method:{ko:"seed 특이도. 지나치게 일반적인 용어는 확산을 과대 측정한다. 각 개념의 대표 용어는 서술 단계에서 함께 산출된 핵심어를 쓰되, 저편수 개념의 불안정성은 저신뢰 표시로 남긴다.",
+     en:"Seed specificity. Overly generic terms overstate diffusion. Each concept's seed terms are those emitted alongside the narration, while the instability of low-count concepts is retained as a low-confidence flag."}},
+
+ {type:"table",num:"04",which:"main",
+  h:{ko:"판정과 확산",en:"Judgment and diffusion"},
+  after:{ko:"신뢰할 수 있는 네 개념만 보면, 실제 확산은 5.23배에서 2.47배까지 뚜렷이 갈리는데 두 심사자의 점수는 대부분 8에 머문다. 판정의 변별력 부재가 표에서 그대로 드러난다.",
+     en:"Among the four reliable concepts, actual diffusion ranges clearly from 5.23× down to 2.47×, yet the judges' scores mostly sit at 8. The judgment's lack of discrimination is visible in the table itself."}},
+
+ {type:"text",num:"05",
+  h:{ko:"판정은 미래를 이미 알고 있었나",en:"Did the judgment already know the future?"},
+  p:{ko:["점수가 7–8에 몰린 데는 이유가 있다. 이 개념들은 실제로 대부분 어느 정도 떴고, 그 사실이 심사 모델의 학습 데이터에 이미 담겨 있다. 모델은 미래를 모르는 과거 시점의 판단을 한 것이 아니라, 결과를 아는 상태에서 채점했을 수 있다. 과거→미래 대조의 청정성이 훼손되는 것이다.",
+        "이를 검증하기 위해 완화 실험을 하였다. 각 개념의 서술에서 시대 식별 단서 — 고유한 시스템·데이터셋 이름, 성공을 암시하는 표현 — 를 제거해 추상적 서술로 다시 쓰고, 같은 심사자로 재판정하였다. 단서가 판정을 부풀리고 있었다면, 단서를 지운 뒤 점수는 내려가고 순위는 재편될 것이다.",
+        "대형 모델에서 효과는 뚜렷하였다. 게임 인공지능 개념은 원래 최고점(9)이었으나 고유명사를 지우자 최저권(3)으로 떨어졌다. 그 점수는 개념의 본질이 아니라 ‘이것이 그 유명한 사례’라는 사후 지식에서 나온 것이었다. 완화 후 대형 모델의 점수는 3에서 9까지 넓게 퍼졌고 — 변별력이 회복되었다 — 신뢰 하위표본에서 확산과의 순위 상관은 음(−0.63)에서 양(+0.32)으로 뒤집혔다. 반면 소형 모델은 완화 전후로 7–8에 머물러 거의 움직이지 않았다."],
+     en:["The clustering at 7–8 has a cause. Most of these concepts did in fact rise to some degree, and that fact is already in the judge model's training data. The model may not have judged from a past vantage blind to the future, but scored while knowing the outcome — corrupting the cleanliness of the past-to-future audit.",
+        "To test this, a mitigation experiment was run. Each concept's description was rewritten to remove era-identifying cues — names of specific systems and datasets, phrasing that hints at success — into an abstract form, and re-judged by the same judges. If the cues had been inflating the judgment, removing them should lower the scores and rearrange the ranking.",
+        "In the large model the effect was clear. The game-AI concept, originally the top score (9), fell to the bottom band (3) once proper names were stripped: its score had come not from the concept's substance but from the hindsight that 'this is the famous case.' After mitigation the large model's scores spread from 3 to 9 — discrimination returned — and on the reliable subset its rank correlation with diffusion flipped from negative (−0.63) to positive (+0.32). The small model, by contrast, stayed at 7–8 before and after, barely moving."]}},
+
+ {type:"fig2"},
+
+ {type:"text",num:"06",
+  h:{ko:"데이터에 근거한 두 번째 관점",en:"A second view, grounded in data"},
+  p:{ko:["파이프라인의 유망성 판정과 별개로, 상위 개념을 제품·서비스 기회 브리프로 번역하고 수요성·실현성·사업성(DVF)으로 점수화하였다. 핵심은 순수 LLM 의견에 그치지 않고, 앞서 측정한 확산 신호를 수요 근거로 주입한 데 있다. 각 브리프의 수요 항목은 해당 개념의 상대 확산과 문헌 규모를 명시적으로 인용한다.",
+        "결과는 판정을 교정하는 방향으로 나타났다. DVF 총점 1위는 C05로, 원래 대형 모델의 유망성 판정에서 최저점을 받았던 바로 그 개념이다. 누수 있는 판정으로 기획했다면 버렸을 개념을, 데이터에 근거한 점수화는 최상위로 되돌렸다. 그리고 그 개념이 실제 확산 1위였다.",
+        "실현성 점수가 네 개념 모두 낮게(2) 수렴한 점도 기록해 둘 만하다. 강화학습을 실제 제품으로 옮길 때의 공통 장벽 — 시뮬레이션과 현실의 격차, 안전 인증, 하이퍼파라미터 민감성 — 을 점수화가 일관되게 짚었다."],
+     en:["Apart from the pipeline's promise judgment, the top concepts were translated into product/service opportunity briefs and scored on Desirability, Feasibility, and Viability (DVF). The point is that these do not rest on model opinion alone: the diffusion signal measured earlier is injected as demand evidence, and each brief's demand field cites the concept's relative diffusion and literature volume explicitly.",
+        "The result ran in the direction of correcting the judgment. The top DVF total went to C05 — the very concept the large model's original promise judgment had scored lowest. A concept that a leaked judgment would have discarded, data-grounded scoring restored to the top. And that concept was the actual top diffuser.",
+        "It is worth noting that feasibility converged low (2) for all four concepts. The scoring consistently identified the common barriers to turning RL into a product — the simulation-to-reality gap, safety certification, hyperparameter sensitivity."]}},
+
+ {type:"table",which:"dvf",
+  h:{ko:"기회 브리프의 DVF 점수",en:"DVF scores of the opportunity briefs"}},
+
+ {type:"briefs",
+  h:{ko:"기회 브리프 전문",en:"The opportunity briefs in full"},
+  intro:{ko:"각 브리프는 개념을 제품·서비스 관점으로 번역한 것으로, 수요 항목은 앞서 측정한 확산 신호를 명시적으로 인용한다. DVF 점수는 이 서술을 근거로 산출되었다.",
+    en:"Each brief translates a concept into product/service terms; the demand field cites the measured diffusion signal explicitly. The DVF scores are computed from these briefs."}},
+
+ {type:"fig3"},
+
+ {type:"table",num:"07",which:"corr",
+  h:{ko:"완화 실험 요약",en:"Mitigation summary"},
+  after:{ko:"대형 모델은 완화로 확산과의 상관 부호가 뒤집혔고, 소형 모델은 거의 변하지 않았다. 더 큰 모델이 사후 지식을 더 많이 품고 있어 누수에 더 취약했다는 해석과, 더 작은 모델은 애초에 변별력이 낮았다는 해석이 함께 성립한다. 표본이 작아(n=4) 수치는 유의하지 않으며 방향으로만 읽는다.",
+     en:"Mitigation flipped the sign of the large model's correlation with diffusion, while the small model barely changed. Two readings hold together: the larger model, holding more hindsight, was more leakage-prone; the smaller model had little discrimination to begin with. With a small sample (n=4) the figures are not significant and are read only as directions."}},
+
+ {type:"text",num:"08",
+  h:{ko:"연구 한계",en:"Limitations"},
+  p:{ko:["본 연구의 결론은 몇 가지 한계를 감안해야 한다.",
+        "첫째, 표본이 작다. 개념은 일곱이고 그중 신뢰할 수 있는 것은 넷뿐이다. 이 규모에서 상관계수는 몇 개 값에 크게 휘둘리며, 실제로 어떤 계수도 통계적 유의성에 이르지 못한다. 수치보다 표를 읽는 편이 더 신뢰할 만하다.",
+        "둘째, 누수는 완화되었을 뿐 제거되지 않았다. 개념 자체가 시대 식별자이므로 — 특정 접근은 특정 연대를 가리킨다 — 고유명사를 지워도 심사자를 완전히 눈멀게 할 수는 없다. 완화는 부분적이며, 그 한계를 결과와 함께 남긴다.",
+        "셋째, 확산은 유망성의 완전한 정답이 아니다. 문헌 성장은 확산의 대리지표일 뿐, 늦게 뜨는 개념이나 비인용 임팩트는 놓친다. 정답이라는 표현은 이 대리성 안에서만 유효하다.",
+        "넷째, 단일 분야의 축소 재현이다. 하나의 강화학습 세부 분야를 다뤘고, 원 방법의 무거운 구성요소는 무료 환경에 맞춘 경량 대체로 갈음하였다. 결과가 다른 분야나 완전한 파이프라인으로 그대로 옮겨지리라는 보장은 없다."],
+     en:["The conclusions should be read against several limitations.",
+        "First, the sample is small. There are seven concepts, of which only four are reliable. At this scale a correlation coefficient swings on a few values, and in fact none reaches statistical significance. Reading the table is more trustworthy than reading the numbers.",
+        "Second, leakage is mitigated, not removed. Because a concept is itself an era identifier — a particular approach points to a particular period — stripping proper names cannot fully blind the judge. The mitigation is partial, and that limit is left standing with the results.",
+        "Third, diffusion is not a complete ground truth for promise. Literature growth is only a proxy for diffusion; it misses late bloomers and non-citation impact. The word 'truth' holds only within this proxy.",
+        "Fourth, this is a single-domain, reduced reproduction. One RL subfield was studied, and the original method's heavier components were replaced with lightweight equivalents for the free environment. There is no guarantee the findings carry to other domains or to the full pipeline."]}},
+
+ {type:"text",num:"09",
+  h:{ko:"이 연구의 결론",en:"What this study concludes"},
+  p:{ko:["유망성 판정을 정답과 대조한 결과, 세 가지가 드러난다. 첫째, LLM의 단일 유망성 점수는 변별력이 약해 개념을 순위로 가르지 못한다. 둘째, 그 점수는 사후 지식에 오염되어 있으며, 시대 단서를 지우면 판정이 실제 확산 쪽으로 이동한다 — 특히 더 큰 모델에서 그러하다. 셋째, 확산 신호에 근거한 정량 점수화는 누수로 왜곡된 판정을 교정하여, 판정이 놓친 실제 유망 개념을 되살린다.",
+        "방법론적 함의는 실질적 발견만큼 유용하다. 더 큰 심사 모델이 언제나 나은 것은 아니었다. 큰 모델은 판정을 더 잘 내리는 만큼 사후 지식으로 더 크게 오염되었고, 작은 모델은 덜 오염된 대신 덜 갈랐다. 판정을 단일 모델에 맡기지 않고 정답과 데이터 근거로 감싸는 절제가, 이 규모에서는 타협이 아니라 옳은 선택이었다."],
+     en:["Auditing the promise judgment against ground truth reveals three things. First, a single LLM promise score has weak discrimination and fails to rank concepts. Second, that score is contaminated by hindsight, and stripping era cues moves the judgment toward actual diffusion — especially in the larger model. Third, quantitative scoring grounded in the diffusion signal corrects the leaked judgment, reviving the genuinely promising concept the judgment had missed.",
+        "The methodological implication is as useful as the substantive one. A larger judge model was not always better: the large model, judging more capably, was also more contaminated by hindsight, while the small model, less contaminated, discriminated less. Not leaving the judgment to a single model but wrapping it in ground truth and data evidence was, at this scale, not a compromise but the right choice."]},
+  method:{ko:"재현성. 모든 판정은 3회 반복의 중앙값으로, 서술·판정·완화·확산 측정을 단계별 파일로 분리해 각 단계를 독립적으로 재실행할 수 있다. 데이터는 공개 API에서 수집했고, 전체 코드와 실행 순서는 저장소 README에 있다.",
+     en:"Reproducibility. All judgments are medians of three runs, with narration, judgment, mitigation, and diffusion measurement split into per-stage files so each stage can be rerun independently. Data was collected from a public API; full code and run order are in the repository README."}},
+
+ {type:"table",which:"prov",
+  h:{ko:"데이터 출처",en:"Data provenance"},
+  after:{ko:"이 리포트의 모든 수치는 위 결과 파일에서 그대로 가져왔다. 각 파일은 저장소의 results/ 폴더에 있으며, 해당 단계 스크립트로 재생성된다.",
+    en:"Every figure in this report is taken directly from the result files above. Each file lives in the repository's results/ folder and is regenerated by its stage script."}}
+];
+
+var FIG={
+ fig1_title:{ko:"그림 1. 두 심사자의 유망성 점수",en:"Figure 1. Promise scores from the two judges"},
+ fig1_cap:{ko:"<b>대부분 7–8에 몰리고, 오직 C05에서 갈린다.</b> 일곱 개념 중 다섯에서 두 심사자의 점수가 같다. 유일한 불일치인 C05에서 소형 모델은 7, 대형 모델은 4를 주었다. (각 개념 3회 판정의 중앙값)",
+   en:"<b>Mostly clustered at 7–8, splitting only on C05.</b> On five of seven concepts the two judges match. On the sole disagreement, C05, the small model gave 7 and the large model 4. (Median of three runs per concept.)"},
+ fig2_title:{ko:"그림 2. 누수 완화 전후의 대형 모델 판정",en:"Figure 2. The large model's judgment before and after mitigation"},
+ fig2_cap:{ko:"<b>단서를 지우자 점수가 실제 확산 쪽으로 이동한다.</b> 신뢰할 수 있는 네 개념을 확산순으로 놓았다. 원래 판정은 실제 1위 C05를 최저(4)로 보았으나 완화 후 8로 올렸고, 실제 중위 C02는 9에서 3으로 내렸다. 막대 척도가 서로 달라 절대 높이가 아닌 개념 간 순위를 본다.",
+   en:"<b>Once cues are removed, scores move toward actual diffusion.</b> The four reliable concepts are ordered by diffusion. The original judgment scored the true top, C05, lowest (4); after mitigation it rose to 8, while the mid-ranked C02 fell from 9 to 3. Bar scales differ, so read the ranking across concepts, not absolute heights."},
+ fig3_title:{ko:"그림 3. LLM 유망성 · DVF · 실제 확산",en:"Figure 3. LLM promise · DVF · actual diffusion"},
+ fig3_cap:{ko:"<b>데이터 근거 DVF가 판정을 교정한다.</b> C05는 원래 LLM 유망성에서 최저였으나 DVF 총점에서 최고이며, 실제 확산에서도 1위다. 파이프라인의 판정만 유독 이 개념을 낮게 보았다. 세 지표의 척도가 서로 다르다.",
+   en:"<b>Data-grounded DVF corrects the judgment.</b> C05 was lowest on the original LLM promise yet highest on DVF total, and first on actual diffusion. Only the pipeline's judgment singled it out as low. The three measures use different scales."}
+};
+
+var TABLE={
+ head:{ko:["개념","Qwen","Gemini","과거편수","미래편수","성장","상대확산"],en:["Concept","Qwen","Gemini","Past n","Future n","Growth","Rel. diff."]},
+ rows:{
+  ko:[["C05 — 표본효율 정책최적화","7","4","578","5,176","8.96×","5.23×"],
+      ["C06 — 최적제어 actor-critic","8","8","368","2,257","6.13×","3.59×"],
+      ["C02 — 게임 인공지능","8","9","2,928","15,317","5.23×","3.06×"],
+      ["C00 — 로보틱스 조작","8","8","832","3,516","4.23×","2.47×"],
+      ["C04 — 멀티에이전트 *","8","8","7","84","12.0×","7.01×"],
+      ["C01 — 밴딧/regret *","7","7","6","6","1.00×","0.58×"],
+      ["C03 — Dec-POMDP *","7","7","42","40","0.95×","0.56×"]],
+  en:[["C05 — sample-efficient policy opt.","7","4","578","5,176","8.96×","5.23×"],
+      ["C06 — optimal-control actor-critic","8","8","368","2,257","6.13×","3.59×"],
+      ["C02 — game AI","8","9","2,928","15,317","5.23×","3.06×"],
+      ["C00 — robotic manipulation","8","8","832","3,516","4.23×","2.47×"],
+      ["C04 — multi-agent *","8","8","7","84","12.0×","7.01×"],
+      ["C01 — bandit/regret *","7","7","6","6","1.00×","0.58×"],
+      ["C03 — Dec-POMDP *","7","7","42","40","0.95×","0.56×"]]},
+ note:{ko:"성장 = 미래편수 / 과거편수. 상대확산 = 성장 / 분야 전체 성장(2015–19 대비 2021–24, 16,468 → 28,173편, 1.71×). * 과거 편수가 적어 성장비가 불안정한 저신뢰 개념.",
+   en:"Growth = future n / past n. Rel. diff. = growth / field-wide growth (16,468 → 28,173 works, 1.71×). * Low-confidence: too few past-window papers for a stable growth ratio."},
+ highlightRow:1
+};
+
+var TABLE2={
+ head:{ko:["심사자","원래 상관 ρ","완화 후 상관 ρ"],en:["Judge","Original ρ","Mitigated ρ"]},
+ rows:{ko:[["Gemini (대형)","−0.63","+0.32"],["Qwen (소형)","−0.78","−0.26"]],
+   en:[["Gemini (large)","−0.63","+0.32"],["Qwen (small)","−0.78","−0.26"]]},
+ note:{ko:"신뢰할 수 있는 네 개념 기준 Spearman 순위 상관. n=4로 유의하지 않으며 방향으로만 읽는다.",
+   en:"Spearman rank correlation on the four reliable concepts. With n=4 it is not significant and is read only as a direction."},
+ highlightRow:1
+};
+
+var TABLE3={
+ head:{ko:["개념","D 수요성","F 실현성","V 사업성","DVF 총점"],en:["Concept","D","F","V","DVF total"]},
+ rows:{
+  ko:[["C05 — 표본효율 정책최적화","5","2","3","10"],
+      ["C00 — 로보틱스 조작","4","2","3","9"],
+      ["C06 — 최적제어 actor-critic","3","2","3","8"],
+      ["C02 — 게임 인공지능","4","2","2","8"]],
+  en:[["C05 — sample-efficient policy opt.","5","2","3","10"],
+      ["C00 — robotic manipulation","4","2","3","9"],
+      ["C06 — optimal-control actor-critic","3","2","3","8"],
+      ["C02 — game AI","4","2","2","8"]]},
+ note:{ko:"각 축 1–5, 확산 신호를 수요·실현성 근거로 주입해 산출. DVF 1위 C05는 원래 LLM 유망성 판정에서 최저점을 받은 개념이자 실제 확산 1위다. 실현성(F)이 네 개념 모두 2로 수렴한 것은 sim-to-real·안전 인증·하이퍼파라미터 민감성이라는 공통 장벽을 반영한다.",
+   en:"Each axis 1–5, computed with the diffusion signal injected as demand/feasibility evidence. The DVF leader C05 is the concept the original LLM promise judgment scored lowest, and the top actual diffuser. Feasibility (F) converged to 2 for all four, reflecting the shared barriers of sim-to-real transfer, safety certification, and hyperparameter sensitivity."},
+ highlightRow:1
+};
+
+var ABSTRACT_LBL={ko:"초록",en:"Abstract"};
+
+var TABLE_PROV={
+ head:{ko:["결과 파일","담긴 내용","리포트 위치"],en:["Result file","Contents","Used in"]},
+ rows:{
+  ko:[["judge_agreement.json","두 심사자 점수 · Spearman 0.907 · 일치율 71%","2절 · 그림 1"],
+      ["diffusion.json","분야 성장 1.71× · 개념별 과거/미래 편수","4절 표"],
+      ["three_way.json","판정 vs 확산 · 신뢰도 플래그","4절 · 그림 3"],
+      ["leakage_compare.json","원래/블라인드 판정 · 상관 부호 반전","5절 · 그림 2 · 7절"],
+      ["briefs.json","기회 브리프 전문 · DVF 점수","6절 표 · 브리프"]],
+  en:[["judge_agreement.json","Two-judge scores · Spearman 0.907 · 71% match","§2 · Fig. 1"],
+      ["diffusion.json","Field growth 1.71× · per-concept past/future n","§4 table"],
+      ["three_way.json","Judgment vs diffusion · reliability flags","§4 · Fig. 3"],
+      ["leakage_compare.json","Original/blind judgment · sign flip","§5 · Fig. 2 · §7"],
+      ["briefs.json","Full opportunity briefs · DVF scores","§6 table · briefs"]]}
+};
+
+var BRIEFS=[
+ {id:"C05",name:{ko:"C05 — 표본효율 정책최적화",en:"C05 — sample-efficient policy optimization"},dvf:"D5 · F2 · V3 = 10",growth:"5.23×",
+  fields:{
+   user:{ko:"연속제어 시스템을 구축하는 ML 엔지니어링 팀, 로보틱스 개발자, 산업 자동화 기업.",en:"ML engineering teams, robotics developers, and industrial automation firms building continuous control systems."},
+   jtbd:{ko:"데이터 수집이 비싸거나 느리거나 위험한 고위험·물리 제약 환경에서 복잡한 심층 강화학습 모델을 학습시킨다.",en:"Train complex deep RL models in high-stakes or physically constrained environments where data collection is expensive, slow, or risky."},
+   mvp:{ko:"정책 그래디언트와 off-policy 크리틱을 결합한 하이브리드 알고리즘을 구현한 라이브러리/플러그인으로, 표준 연속제어 환경에서 표본 절감을 벤치마크.",en:"A library/plugin implementing the hybrid policy-gradient/off-policy-critic algorithm, benchmarked on standard continuous-control environments to show sample reduction."},
+   demand:{ko:"RL 분야 평균의 5.234배로 확산, 과거 문헌 578편 — 표본효율 병목 해결에 대한 강한 관심.",en:"Spreading at 5.234× the RL field average with 578 past-window papers — strong interest in solving sample-efficiency bottlenecks."},
+   risk:{ko:"on-policy 그래디언트와 off-policy 크리틱 결합의 높은 복잡성·하이퍼파라미터 민감성. 상용 안정성·산업 파이프라인 통합·독점 환경 성능은 추측이며 데이터 근거 없음.",en:"High complexity and hyperparameter sensitivity in combining on-policy gradients with off-policy critics. Commercial stability, pipeline integration, and proprietary-environment gains are speculative and not data-backed."}}},
+ {id:"C00",name:{ko:"C00 — 로보틱스 조작",en:"C00 — robotic manipulation"},dvf:"D4 · F2 · V3 = 9",growth:"2.47×",
+  fields:{
+   user:{ko:"물류·창고·첨단 제조의 자동화 엔지니어링 관리자 및 운영 책임자.",en:"Automation engineering managers and operations directors in logistics, warehousing, and advanced manufacturing."},
+   jtbd:{ko:"새 품목마다 수작업 프로그래밍 없이, 비정형·예측 불가한 물체 변이를 다루는 로봇 분류·조립 라인을 빠르게 배치·유지한다.",en:"Quickly deploy and maintain robotic sorting/assembly lines that handle unstructured, unpredictable object variation without hand-coding each new item."},
+   mvp:{ko:"단일 로봇 팔 셀에 sim-to-real RL 파이프라인을 올려, 무작위로 담긴 신규 소비재를 자율 분류.",en:"A sim-to-real RL pipeline on a single robotic-arm cell that autonomously sorts a randomized basket of novel consumer goods."},
+   demand:{ko:"상대 확산 2.47배, 과거 문헌 832편 — 빠른 확산과 학술-산업 관심 증가. 상용 견인은 연구 속도에서 유추한 추측.",en:"Relative diffusion 2.47× with 832 past-window papers — rapid dissemination and growing academic-to-industrial interest. Commercial pull is inferred from research velocity, speculative."},
+   risk:{ko:"높은 sim-to-real 전이 위험, 탐색적 학습 중 하드웨어 마모, 사람 인접 작업공간의 안전 인증 장벽.",en:"High sim-to-real transfer risk, hardware wear during exploratory learning, and safety-certification barriers in human-adjacent workspaces."}}},
+ {id:"C06",name:{ko:"C06 — 최적제어 actor-critic",en:"C06 — optimal-control actor-critic"},dvf:"D3 · F2 · V3 = 8",growth:"3.59×",
+  fields:{
+   user:{ko:"산업 자동화 엔지니어, 로보틱스 개발자, 항공우주 제어 시스템 설계자.",en:"Industrial automation engineers, robotics developers, and aerospace control-systems architects."},
+   jtbd:{ko:"예측 불가한 환경의 고정밀 기계를, 수개월의 수동 모델 튜닝 없이 최적 제어·안정 상태로 유지해 커미셔닝 시간과 다운타임을 줄인다.",en:"Keep high-precision machinery under optimal control in unpredictable environments without months of manual model tuning, cutting commissioning time and downtime."},
+   mvp:{ko:"시뮬레이션 비선형 모터/로봇 팔용 베이스라인 actor-critic 신경 제어기를 구현해, 수렴 속도·외란 억제를 PID·MPC와 비교.",en:"A baseline actor-critic neural controller for a simulated nonlinear motor/arm, benchmarking convergence and disturbance rejection against PID/MPC."},
+   demand:{ko:"상대 확산 3.585배, 과거 문헌 368편. 상용 수요는 학술 확산 지표에서만 유추한 추측(직접 판매 데이터 없음).",en:"Relative diffusion 3.585× with 368 past-window papers. Commercial demand is inferred solely from academic diffusion, speculative (no direct sales data)."},
+   risk:{ko:"실시간 신경망 추론의 안전 보장, 물리 시스템 온라인 학습 중 통제되지 않은 탐색 위험, 항공우주 등 안전 필수 분야의 인증 장벽.",en:"Real-time NN inference safety, unconstrained online-exploration risk in physical systems, and certification hurdles in safety-critical domains like aerospace."}}},
+ {id:"C02",name:{ko:"C02 — 게임 인공지능",en:"C02 — game AI"},dvf:"D4 · F2 · V2 = 8",growth:"3.06×",
+  fields:{
+   user:{ko:"AI 연구소, 기업 자동화 설계자, 고급 의사결정 에이전트를 찾는 시뮬레이션 중심 산업(물류·자율 시스템 등).",en:"AI research labs, enterprise automation architects, and simulation-heavy industries seeking advanced decision-making agents."},
+   jtbd:{ko:"복잡한 운영 시스템에서, 광범위한 수동 규칙 코딩 없이 동적 환경의 전략적 의사결정을 자동화한다.",en:"Automate strategic decision-making in dynamic environments for complex operational systems, without extensive manual rule-coding."},
+   mvp:{ko:"특정 기업의 자원 배분·라우팅 문제를 푸는 전용 시뮬레이션 테스트베드 + 확장 가능한 심층 RL 파이프라인.",en:"A dedicated simulation testbed plus a scalable deep-RL pipeline solving a specific enterprise resource-allocation or routing problem."},
+   demand:{ko:"상대 확산 3.058배, 과거 문헌 약 2,928편 — 강한 시장 모멘텀. 연구 테스트베드를 넘어선 구체 상용 응용은 추측.",en:"Relative diffusion 3.058× with ~2,928 past-window papers — strong momentum. Commercial applications beyond research testbeds are speculative."},
+   risk:{ko:"높은 학습 계산량, 실제 배치에서의 표본 비효율, 시뮬레이션-현실 전이 격차. 규제 장벽은 추측이며 데이터 근거 없음.",en:"High training compute, real-world sample inefficiency, and sim-to-real transfer gaps. Regulatory barriers are speculative and not data-backed."}}}
+];
+
+var state={lang:"ko"};
+function pick(o){return o?o[state.lang]:"";}
+function el(t,c,h){var e=document.createElement(t);if(c)e.className=c;if(h!=null)e.innerHTML=h;return e;}
+
+function renderMast(){
+ document.querySelector('[data-slot="kicker"]').textContent=pick(C.kicker);
+ document.querySelector('[data-slot="title"]').textContent=pick(C.title);
+ document.querySelector('[data-slot="standfirst"]').textContent=pick(C.standfirst);
+ var by=document.querySelector('[data-slot="byline"]');by.innerHTML="";
+ pick(C.byline).forEach(function(pr){by.appendChild(el("span",null,"<b>"+pr[0]+"</b> "+pr[1]));});
+ document.querySelector('[data-slot="footer"]').textContent=pick(C.footer);
+ document.querySelectorAll("[data-t]").forEach(function(n){var k=n.getAttribute("data-t");if(UI[k])n.textContent=UI[k][state.lang];});
+ document.documentElement.lang=state.lang;document.title=pick(C.title);
+}
+
+function renderReport(){
+ var root=document.getElementById("report");root.innerHTML="";
+ SECTIONS.forEach(function(s){
+  var sec=el("section","reveal");
+  if(s.type==="abstract"){var box=el("div","abstract");box.appendChild(el("div","lbl",ABSTRACT_LBL[state.lang]));box.appendChild(el("p",null,pick(s.body)));sec.appendChild(box);root.appendChild(sec);return;}
+  if(s.type==="text"||s.type==="table"){
+    if(s.num)sec.appendChild(el("div","sec-num",s.num));
+    var ht=pick(s.h);if(ht)sec.appendChild(el("h2",null,ht));
+  }
+  if(s.type==="briefs"){
+    var ht2=pick(s.h);if(ht2)sec.appendChild(el("h2",null,ht2));
+    if(s.intro)sec.appendChild(el("p",null,pick(s.intro)));
+    sec.appendChild(buildBriefs());
+  }
+  if(s.type==="text"){
+   (pick(s.p)||[]).forEach(function(pa,i){sec.appendChild(el("p",(i===0&&s.lede)?"lede":null,pa));});
+   if(s.after)pick(s.after).forEach(function(pa){sec.appendChild(el("p",null,pa));});
+   if(s.method)sec.appendChild(el("div","method",pick(s.method)));
+  }
+  if(s.type==="fig1")sec.appendChild(buildFigure("fig-scores",FIG.fig1_title[state.lang],pick(FIG.fig1_cap)));
+  if(s.type==="fig2")sec.appendChild(buildFigure("fig-blind",FIG.fig2_title[state.lang],pick(FIG.fig2_cap)));
+  if(s.type==="fig3")sec.appendChild(buildFigure("fig-dvf",FIG.fig3_title[state.lang],pick(FIG.fig3_cap)));
+  if(s.type==="table"){
+    var T=s.which==="corr"?TABLE2:(s.which==="dvf"?TABLE3:(s.which==="prov"?TABLE_PROV:TABLE));
+    sec.appendChild(buildTable(T,s.which==="prov"));
+    if(T.note)sec.appendChild(el("p","method",pick(T.note)));
+    if(s.after)sec.appendChild(el("p",null,pick(s.after)));
+  }
+  root.appendChild(sec);
+ });
+ armFigure("fig-scores",drawScores);
+ armFigure("fig-blind",function(svg){drawTriple("blind",svg);});
+ armFigure("fig-dvf",function(svg){drawTriple("dvf",svg);});
+ initReveal();
+}
+
+function buildFigure(id,title,cap){var f=el("figure");f.appendChild(el("div","fig-title",title));var svg=document.createElementNS("http://www.w3.org/2000/svg","svg");svg.setAttribute("id",id);svg.setAttribute("viewBox","0 0 680 300");svg.setAttribute("role","img");f.appendChild(svg);f.appendChild(el("figcaption",null,cap));return f;}
+function buildTable(T,leftAlign){var tb=el("table");var head=T.head[state.lang];var th=el("thead");var tr=el("tr");head.forEach(function(h,i){tr.appendChild(el("th",(i>0&&!leftAlign)?"num":null,h));});th.appendChild(tr);tb.appendChild(th);var tbody=el("tbody");pick(T.rows).forEach(function(r,ri){var t=el("tr",(ri===(T.highlightRow||0)-1)?"highlight":null);r.forEach(function(c,ci){t.appendChild(el("td",(ci>0&&!leftAlign)?"num":null,c));});tbody.appendChild(t);});tb.appendChild(tbody);return tb;}
+
+function buildBriefs(){
+ var L={user:{ko:"대상",en:"User"},jtbd:{ko:"과업",en:"Job"},mvp:{ko:"MVP",en:"MVP"},demand:{ko:"수요 신호",en:"Demand"},risk:{ko:"실현성 리스크",en:"Risk"}};
+ var wrap=el("div","briefs");
+ BRIEFS.forEach(function(b){
+  var card=el("div","brief");
+  var head=el("div","brief-head");
+  head.appendChild(el("span","brief-name",b.name[state.lang]));
+  head.appendChild(el("span","brief-dvf","<b>"+b.dvf+"</b> · "+(state.lang==="ko"?"실제 확산 ":"diffusion ")+b.growth));
+  card.appendChild(head);
+  var dl=el("dl");
+  ["user","jtbd","mvp","demand","risk"].forEach(function(k){
+   dl.appendChild(el("dt",null,L[k][state.lang]));
+   dl.appendChild(el("dd",null,b.fields[k][state.lang]));
+  });
+  card.appendChild(dl);
+  wrap.appendChild(card);
+ });
+ return wrap;
+}
+
+var drawn={};
+function armFigure(id,fn){var e=document.getElementById(id);if(!e)return;drawn[id]=false;if(!("IntersectionObserver"in window)){fn(e);drawn[id]=true;return;}var io=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting&&!drawn[id]){fn(x.target);drawn[id]=true;io.disconnect();}});},{threshold:.25});io.observe(e);}
+function NS(){return"http://www.w3.org/2000/svg";}
+function mk(t,a){var e=document.createElementNS(NS(),t);for(var k in a)e.setAttribute(k,a[k]);return e;}
+
+var COL={qwen:"#8a94a0",gemini:"#2f5d50",truth:"#a9761a",dvf:"#2f5d50",promise:"#b98a3a"};
+
+function legend(svg,items,x,y){var gx=x;items.forEach(function(it){svg.appendChild(mk("rect",{x:gx,y:y-9,width:11,height:11,fill:it.c}));var t=mk("text",{x:gx+16,y:y,"class":"legend-txt"});t.textContent=it.l;svg.appendChild(t);gx+=16+it.l.length*7.2+18;});}
+
+function drawScores(svg){svg.innerHTML="";var W=680,H=300,padL=30,padR=16,padT=34,padB=40;
+ var labels=["C05","C06","C02","C00","C04","C01","C03"];
+ var qwen=[7,8,8,8,8,7,7],gemini=[4,8,9,8,8,7,7];
+ var yMax=9,plotW=W-padL-padR,plotH=H-padT-padB,n=labels.length,groupW=plotW/n,barW=groupW*0.30;
+ function y(v){return padT+(1-v/yMax)*plotH;}
+ [0,3,6,9].forEach(function(t){var gy=y(t);svg.appendChild(mk("line",{x1:padL,x2:W-padR,y1:gy,y2:gy,"class":"grid"}));var tx=mk("text",{x:padL-6,y:gy+4,"text-anchor":"end","class":"tick-txt"});tx.textContent=t;svg.appendChild(tx);});
+ legend(svg,[{l:"Qwen3-8B",c:COL.qwen},{l:"Gemini",c:COL.gemini}],padL,16);
+ labels.forEach(function(lb,i){var cx=padL+i*groupW+groupW/2;
+  [{v:qwen[i],c:COL.qwen,off:-barW-2},{v:gemini[i],c:COL.gemini,off:2}].forEach(function(d){var bx=cx+d.off,by=y(d.v),bh=(H-padB)-by;var r=mk("rect",{x:bx,y:H-padB,width:barW,height:0,fill:d.c});svg.appendChild(r);
+    var st=null,dur=620+i*55;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);r.setAttribute("y",(H-padB)-bh*e);r.setAttribute("height",bh*e);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});
+  var tx=mk("text",{x:cx,y:H-padB+18,"text-anchor":"middle","class":"bar-lbl"});if(lb==="C05")tx.setAttribute("font-weight","700");tx.textContent=lb+(i>=4?" *":"");svg.appendChild(tx);});
+}
+
+function drawTriple(mode,svg){svg.innerHTML="";var W=680,H=300,padL=30,padR=16,padT=34,padB=40;
+ var labels=["C05","C06","C02","C00"];
+ var diffusion=[5.23,3.59,3.06,2.47];
+ var s1,s2,s1max,s2max,leg;
+ if(mode==="blind"){s1=[4,8,9,8];s2=[8,9,3,8];s1max=9;s2max=9;
+   leg=[{l:state.lang==="ko"?"원래":"original",c:COL.qwen},{l:state.lang==="ko"?"완화":"blind",c:COL.gemini},{l:state.lang==="ko"?"확산":"diffusion",c:COL.truth}];}
+ else{s1=[4,8,9,8];s2=[10,8,8,9];s1max=9;s2max=15;
+   leg=[{l:state.lang==="ko"?"LLM 유망성":"LLM promise",c:COL.promise},{l:"DVF",c:COL.dvf},{l:state.lang==="ko"?"확산":"diffusion",c:COL.truth}];}
+ var dmax=6,plotW=W-padL-padR,plotH=H-padT-padB,n=labels.length,groupW=plotW/n,barW=groupW*0.22;
+ function h(v,mx){return v/mx*plotH;}
+ [0,.25,.5,.75,1].forEach(function(f){var gy=padT+(1-f)*plotH;svg.appendChild(mk("line",{x1:padL,x2:W-padR,y1:gy,y2:gy,"class":"grid"}));});
+ legend(svg,leg,padL,16);
+ labels.forEach(function(lb,i){var cx=padL+i*groupW+groupW/2;
+  [{v:s1[i],mx:s1max,c:leg[0].c,off:-1.5*barW-3},{v:s2[i],mx:s2max,c:leg[1].c,off:-barW/2},{v:diffusion[i],mx:dmax,c:COL.truth,off:barW/2+3}].forEach(function(d){var bh=h(d.v,d.mx),bx=cx+d.off;var r=mk("rect",{x:bx,y:H-padB,width:barW,height:0,fill:d.c});svg.appendChild(r);
+    var st=null,dur=620+i*65;function step(ts){if(!st)st=ts;var p=Math.min((ts-st)/dur,1),e=1-Math.pow(1-p,3);r.setAttribute("y",(H-padB)-bh*e);r.setAttribute("height",bh*e);if(p<1)requestAnimationFrame(step);}requestAnimationFrame(step);});
+  var tx=mk("text",{x:cx,y:H-padB+18,"text-anchor":"middle","class":"bar-lbl"});if(lb==="C05")tx.setAttribute("font-weight","700");tx.textContent=lb;svg.appendChild(tx);});
+}
+
+var revObs=null;
+function initReveal(){var els=document.querySelectorAll(".reveal");if(!("IntersectionObserver"in window)){els.forEach(function(e){e.classList.add("in");});return;}if(revObs)revObs.disconnect();revObs=new IntersectionObserver(function(en){en.forEach(function(x){if(x.isIntersecting){x.target.classList.add("in");revObs.unobserve(x.target);}});},{threshold:.1});els.forEach(function(e){revObs.observe(e);});}
+
+window.setLang=function(l){state.lang=l;document.getElementById("lang-ko").classList.toggle("active",l==="ko");document.getElementById("lang-en").classList.toggle("active",l==="en");renderMast();renderReport();};
+
+document.addEventListener("DOMContentLoaded",function(){renderMast();renderReport();});
+})();
+</script>
+</body>
+</html>
