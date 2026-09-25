@@ -1,0 +1,118 @@
+[
+  {
+    "concept_id": "C05",
+    "rel_growth": 5.234,
+    "brief": {
+      "summary": "An enterprise reinforcement learning optimization service that combines policy gradients with off-policy critics to dramatically improve sample efficiency in continuous control tasks. This approach reduces the high data collection costs that currently block real-world deep RL deployment.",
+      "target_user": "Machine learning engineering teams, robotics developers, and industrial automation firms building continuous control systems.",
+      "jtbd": "Train complex deep reinforcement learning models in high-stakes or physically constrained environments where data collection is expensive, slow, or risky.",
+      "value_prop": "Achieves significantly higher sample efficiency and lower variance than standard batch policy gradient methods, making model-free RL economically viable for real-world physical and industrial domains.",
+      "mvp": "A specialized software library or plugin implementing the hybrid policy-gradient/off-policy critic algorithm, benchmarked against standard continuous control environments to demonstrate sample reduction.",
+      "demand_signal": "Spreading at 5.234x the RL field average with 578 past-window papers, indicating surging research momentum and strong foundational interest in solving sample efficiency bottlenecks.",
+      "feasibility_risk": "High algorithmic complexity and sensitivity to hyperparameter tuning when combining on-policy gradients with off-policy critics. Note: Commercial stability, integration friction with existing industrial pipelines, and exact performance gains in proprietary environments are speculative and not backed by the data.",
+      "adjacent": "Model-based reinforcement learning, imitation learning, and standard off-policy algorithms like DDPG or SAC."
+    },
+    "dvf": {
+      "D": {
+        "score": 5,
+        "why": "The demand signal shows intense academic and foundational interest, spreading at 5.234x the RL field average with 578 past-window papers tackling sample efficiency bottlenecks."
+      },
+      "F": {
+        "score": 2,
+        "why": "Feasibility is constrained by high algorithmic complexity, sensitivity to hyperparameter tuning when combining policy gradients with off-policy critics, and integration friction with industrial pipelines."
+      },
+      "V": {
+        "score": 3,
+        "why": "While the value proposition targets a major economic bottleneck by reducing expensive data collection costs, commercial stability and performance gains in proprietary environments remain speculative."
+      }
+    },
+    "dvf_total": 10
+  },
+  {
+    "concept_id": "C06",
+    "rel_growth": 3.585,
+    "brief": {
+      "summary": "This service applies actor-critic reinforcement learning and adaptive dynamic programming to control complex nonlinear systems online without requiring prior system models. It leverages neural network approximations and event-sampled techniques to deliver robust, fault-tolerant operation under uncertainty.",
+      "target_user": "Industrial automation engineers, robotics developers, and aerospace control systems architects.",
+      "jtbd": "When operating complex, high-precision machinery in unpredictable environments, I need to maintain optimal control and stability without spending months manually tuning system models or failing when unexpected disturbances occur, so that I can reduce commissioning time and prevent costly system downtime.",
+      "value_prop": "Unlike traditional model-based control that requires exhaustive upfront system identification and fails under unmodeled disturbances, this approach learns and optimizes continuously online using data-driven identifiers, dramatically reducing engineering overhead and improving fault tolerance.",
+      "mvp": "A software library or module implementing a baseline actor-critic neural controller for a simulated nonlinear motor or robotic arm, benchmarking its convergence speed and disturbance rejection against standard PID or model-predictive controllers.",
+      "demand_signal": "Market interest is surging rapidly, evidenced by a relative diffusion rate of 3.585x (spreading 3.585 times faster than the broader reinforcement learning field) and a robust foundation of 368 past-window papers. (Note: Commercial demand is speculative and inferred entirely from academic diffusion metrics, as no direct commercial sales data is provided).",
+      "feasibility_risk": "High technological maturity barriers regarding real-time neural network inference safety guarantees, unconstrained exploration risks during online learning in physical systems, and stringent certification/regulatory hurdles in safety-critical domains like aerospace.",
+      "adjacent": "Traditional Model Predictive Control (MPC), gain-scheduled PID control, classical adaptive control, and standard offline reinforcement learning."
+    },
+    "dvf": {
+      "D": {
+        "score": 3,
+        "why": "While academic diffusion is surging at 3.585x, direct commercial demand signals remain speculative as the metrics are entirely derived from academic paper publications rather than enterprise adoption data."
+      },
+      "F": {
+        "score": 2,
+        "why": "Feasibility is heavily constrained by high technological risks, including real-time neural network safety guarantees, dangerous unconstrained online exploration in physical systems, and strict aerospace regulatory hurdles."
+      },
+      "V": {
+        "score": 3,
+        "why": "The value proposition of reducing commissioning time and engineering overhead is strong for high-precision industries, but monetization and deployment costs in safety-critical sectors remain unproven."
+      }
+    },
+    "dvf_total": 8
+  },
+  {
+    "concept_id": "C00",
+    "rel_growth": 2.47,
+    "brief": {
+      "summary": "This service applies deep reinforcement learning and guided policy search to enable autonomous robots to master contact-rich manipulation in unstructured environments. It bridges the sim-to-real gap to generalize complex physical skills across a vast variety of objects with minimal human intervention.",
+      "target_user": "Automation engineering managers and operations directors in logistics, warehousing, and advanced manufacturing.",
+      "jtbd": "Quickly deploy and maintain robotic sorting or assembly lines that can handle highly unstructured, unpredictable object variations without requiring manual, hardcoded programming for every new item.",
+      "value_prop": "Reduces costly engineering hours spent on custom trajectory programming and increases throughput when handling novel, unstructured objects compared to traditional rigid automation and basic computer vision systems.",
+      "mvp": "A simulated-to-real reinforcement learning pipeline deployed on a single robotic arm cell to autonomously sort a randomized basket of novel consumer goods.",
+      "demand_signal": "The underlying research subfield exhibits strong momentum, with a relative diffusion rate of 2.47x the field average and 832 past-window papers, indicating rapid dissemination and growing academic-to-industrial interest (Note: commercial pull is speculative and inferred from research velocity, not direct market sales data).",
+      "feasibility_risk": "High sim-to-real transfer risk, hardware wear and tear during unstructured exploratory learning, and potential safety certification barriers in human-adjacent workspaces.",
+      "adjacent": "Traditional computer vision with heuristic grasp planning, teleoperation, and conventional hardcoded industrial robotics programming."
+    },
+    "dvf": {
+      "D": {
+        "score": 4,
+        "why": "High user demand is evident from the critical need to eliminate manual trajectory programming for unstructured objects in logistics and manufacturing."
+      },
+      "F": {
+        "score": 2,
+        "why": "Feasibility is challenged by high sim-to-real transfer risks, hardware wear during exploratory learning, and safety certification barriers."
+      },
+      "V": {
+        "score": 3,
+        "why": "Viability is promising due to clear labor-saving value propositions, though commercial pull is currently inferred from academic research velocity rather than direct sales data."
+      }
+    },
+    "dvf_total": 9
+  },
+  {
+    "concept_id": "C02",
+    "rel_growth": 3.058,
+    "brief": {
+      "summary": "This service applies deep reinforcement learning algorithms across complex multi-agent environments to build autonomous decision-making agents capable of mastering dynamic tasks with minimal prior knowledge. Note: Specific commercial application domains beyond research testbeds are speculative and not backed by the data.",
+      "target_user": "AI research labs, enterprise automation architects, and simulation-heavy industries (e.g., logistics, autonomous systems) seeking advanced decision-making agents.",
+      "jtbd": "When designing complex operational systems, I need to automate strategic decision-making in dynamic environments so that my systems can adapt to novel scenarios without extensive manual rule-coding.",
+      "value_prop": "Achieves superhuman performance and adaptability in intricate strategic tasks with minimal prior domain knowledge, outperforming rigid heuristic-based or classical supervised machine learning models.",
+      "mvp": "A specialized simulation environment testbed coupled with a scalable deep reinforcement learning pipeline to solve a specific enterprise resource allocation or routing challenge.",
+      "demand_signal": "Demonstrates high market momentum with a relative diffusion rate of 3.058x versus the reinforcement learning field average and a substantial volume of 2,928 past-window papers.",
+      "feasibility_risk": "High computational requirements for training, data sample inefficiency in real-world deployments, and potential simulation-to-reality transfer gaps. (Note: Regulatory barriers are speculative and not backed by the data).",
+      "adjacent": "Supervised learning, classical operations research optimization algorithms, genetic algorithms, and traditional rule-based expert systems."
+    },
+    "dvf": {
+      "D": {
+        "score": 4,
+        "why": "The demand signal shows strong market momentum with a 3.058x relative diffusion rate and nearly 3,000 papers, indicating significant interest from researchers and enterprises seeking advanced automation."
+      },
+      "F": {
+        "score": 2,
+        "why": "Feasibility is constrained by high computational training requirements, data sample inefficiency, and notable simulation-to-reality transfer gaps highlighted in the risks."
+      },
+      "V": {
+        "score": 2,
+        "why": "Viability is currently limited because specific commercial application domains beyond research testbeds remain speculative and lack concrete data backing in the brief."
+      }
+    },
+    "dvf_total": 8
+  }
+]
