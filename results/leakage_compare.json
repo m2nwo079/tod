@@ -1,0 +1,58 @@
+{
+  "C00": {
+    "q_orig": 8,
+    "q_blind": 7,
+    "g_orig": 8,
+    "g_blind": 8,
+    "rel_growth": 2.47,
+    "past_n": 832
+  },
+  "C05": {
+    "q_orig": 7,
+    "q_blind": 7,
+    "g_orig": 4,
+    "g_blind": 8,
+    "rel_growth": 5.234,
+    "past_n": 578
+  },
+  "C02": {
+    "q_orig": 8,
+    "q_blind": 8,
+    "g_orig": 9,
+    "g_blind": 3,
+    "rel_growth": 3.058,
+    "past_n": 2928
+  },
+  "C06": {
+    "q_orig": 8,
+    "q_blind": 7,
+    "g_orig": 8,
+    "g_blind": 9,
+    "rel_growth": 3.585,
+    "past_n": 368
+  },
+  "C04": {
+    "q_orig": 8,
+    "q_blind": 7,
+    "g_orig": 8,
+    "g_blind": 5,
+    "rel_growth": 7.014,
+    "past_n": 7
+  },
+  "C03": {
+    "q_orig": 7,
+    "q_blind": 7,
+    "g_orig": 7,
+    "g_blind": 7,
+    "rel_growth": 0.557,
+    "past_n": 42
+  },
+  "C01": {
+    "q_orig": 7,
+    "q_blind": 7,
+    "g_orig": 7,
+    "g_blind": 4,
+    "rel_growth": 0.585,
+    "past_n": 6
+  }
+}
