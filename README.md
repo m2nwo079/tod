@@ -106,6 +106,13 @@ than left to model opinion.
 
 Run `python src/09_make_figures.py` to regenerate the figures below.
 
+**Technology knowledge graph (Step 2).** 400 nodes / 4,022 edges after TF-IDF term
+selection and nPMI edge filtering. The top-terms view shows the themes community
+detection later separates (classical control · robotics · game/agent RL).
+
+![TKG full](results/figures/tkg_v2_full.png)
+![TKG top terms](results/figures/tkg_v2_top.png)
+
 **Dual-judge promise scores.** Most concepts cluster at 7–8; the two judges split only on
 C05.
 
@@ -120,6 +127,18 @@ diffusion — the true top concept C05 rises from 4 to 8, while C02 falls from 9
 lowest by the original LLM judge, is highest on DVF and first in actual diffusion.
 
 ![Three-way comparison](results/figures/three_way.png)
+
+### Data provenance
+
+Every number in the report and figures comes directly from these result files:
+
+| File | Contents | Feeds |
+|---|---|---|
+| `results/judge_agreement.json` | Two-judge medians; Spearman 0.907, exact-match 71.4%, MAE 0.571 | Fig. `dual_judge` |
+| `results/diffusion.json` | Field growth 1.71× (16,468 → 28,173); per-concept past/future n, growth | Backtest table |
+| `results/three_way.json` | Judgment vs diffusion, reliability flags | Fig. `three_way` |
+| `results/leakage_compare.json` | Original vs blind judgment; ρ sign flip (Gemini −0.63 → +0.32) | Fig. `leakage_mitigation` |
+| `results/briefs.json` | Full opportunity briefs + DVF scores | DVF table / briefs |
 
 ### Key findings
 
