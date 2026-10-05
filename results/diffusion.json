@@ -1,65 +1,65 @@
 {
   "field": {
-    "past": 16468,
-    "future": 28173,
-    "growth": 1.7107724070925432
+    "past": 16197,
+    "future": 28053,
+    "growth": 1.731987405075014
   },
   "concepts": [
     {
       "concept_id": "C00",
       "query": "autonomous robots behavioral skills robotic manipulation reinforcement learning real-world objects",
-      "past_n": 832,
-      "future_n": 3516,
-      "raw_growth": 4.226,
-      "rel_growth": 2.47
+      "past_n": 213,
+      "future_n": 774,
+      "raw_growth": 3.634,
+      "rel_growth": 2.098
     },
     {
       "concept_id": "C05",
       "query": "sample efficiency policy gradient off-policy critic continuous control model-free reinforcement learning",
-      "past_n": 578,
-      "future_n": 5176,
-      "raw_growth": 8.955,
-      "rel_growth": 5.234
+      "past_n": 295,
+      "future_n": 1665,
+      "raw_growth": 5.644,
+      "rel_growth": 3.259
     },
     {
       "concept_id": "C02",
       "query": "reinforcement learning artificial intelligence game-playing agents deep learning decision making",
-      "past_n": 2928,
-      "future_n": 15317,
-      "raw_growth": 5.231,
-      "rel_growth": 3.058
+      "past_n": 704,
+      "future_n": 2410,
+      "raw_growth": 3.423,
+      "rel_growth": 1.977
     },
     {
       "concept_id": "C06",
       "query": "adaptive dynamic programming optimal control unknown nonlinear systems reinforcement learning actor-critic design",
-      "past_n": 368,
-      "future_n": 2257,
-      "raw_growth": 6.133,
-      "rel_growth": 3.585
+      "past_n": 133,
+      "future_n": 515,
+      "raw_growth": 3.872,
+      "rel_growth": 2.236
     },
     {
       "concept_id": "C04",
       "query": "multi-agent reinforcement learning decentralized coordination sparse rewards actor-critic causal influence",
-      "past_n": 7,
-      "future_n": 84,
-      "raw_growth": 12.0,
-      "rel_growth": 7.014
+      "past_n": 4,
+      "future_n": 37,
+      "raw_growth": 9.25,
+      "rel_growth": 5.341
     },
     {
       "concept_id": "C03",
       "query": "dec-pomdps belief space macro-actions multi-robot planning partial observability",
-      "past_n": 42,
-      "future_n": 40,
-      "raw_growth": 0.952,
-      "rel_growth": 0.557
+      "past_n": 19,
+      "future_n": 17,
+      "raw_growth": 0.895,
+      "rel_growth": 0.517
     },
     {
       "concept_id": "C01",
       "query": "multi-armed bandits combinatorial semi-bandits Thompson sampling stochastic regret bounds regional bandits",
-      "past_n": 6,
-      "future_n": 6,
-      "raw_growth": 1.0,
-      "rel_growth": 0.585
+      "past_n": 1,
+      "future_n": 0,
+      "raw_growth": 0.0,
+      "rel_growth": 0.0
     }
   ]
 }

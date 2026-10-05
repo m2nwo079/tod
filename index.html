@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>유망하다는 판정은 무엇을 근거로 하는가?</title>
+<title>유망하다는 판정은 무엇을 근거로 하는가</title>
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
   :root{--ink:#22262b;--ink-soft:#5c6570;--paper:#f4f2ec;--paper-edge:#e4e1d7;--rule:#c8c2b4;--wine:#2f5d50;--wine-soft:#d8e4df;--gold:#a9761a;--up:#2f6f5e;--down:#a13b32;--maxw:760px}
@@ -102,9 +102,9 @@
 var UI={ui_lang:{ko:"언어",en:"Language"}};
 
 var C={
- kicker:{ko:"강화학습 · LLM 유망성 판정 검증 연구",en:"Reinforcement Learning · LLM Promise-Judgment Validation"},
- title:{ko:"유망하다는 판정은 무엇을 근거로 하는가?",en:"On what does a 'promising' judgment rest?"},
- standfirst:{ko:"처방적 기술기회 발굴 파이프라인은 LLM에게 어느 기술 개념이 유망한지 묻는다. 그러나 그 판정이 실제 확산과 일치하는지는 검증된 바 없다. 과거(2015–2019) 강화학습 문헌으로 개념을 생성하고, 이후(2021–2024)의 실제 확산을 정답으로 삼아 그 판정을 되짚는다.",
+ kicker:{ko:"LLM 유망성 판정 검증 연구",en:"Reinforcement Learning · LLM Promise-Judgment Validation"},
+ title:{ko:"유망하다는 판정은 무엇을 근거로 하는가",en:"On what does a 'promising' judgment rest?"},
+ standfirst:{ko:"처방적 기술 기회 탐지(Prescriptive Technology Opportunity Detection) 파이프라인은 LLM을 통해 어떠한 기술 개념이 유망한지 발굴한다. 그러나 그 판정이 실제 확산과 일치하는지에 대한 검증이 일반적으로 이루어지는 것은 아니다. 과거(2015–2019) 강화학습(Reinforcement Learning) 문헌으로 개념을 생성하고, 이후(2021–2024)의 실제 확산을 정답으로 사용하여 그 판정을 확인하고자 한다.",
    en:"A prescriptive technology-opportunity pipeline asks an LLM which technology concepts are promising. Whether that judgment matches actual diffusion has gone unverified. This study generates concepts from past (2015–2019) reinforcement-learning literature and audits the judgment against later (2021–2024) diffusion as ground truth."},
  byline:{ko:[["데이터","OpenAlex 공개 API"],["도메인","강화학습 (topic T10462)"],["표본","개념 7개 · 과거 문헌 4,000편"],["심사자","Qwen3-8B · Gemini"]],
    en:[["Data","OpenAlex public API"],["Domain","Reinforcement Learning (topic T10462)"],["Sample","7 concepts · 4,000 past works"],["Judges","Qwen3-8B · Gemini"]]},
@@ -114,8 +114,8 @@ var C={
 
 var SECTIONS=[
  {type:"abstract",body:{
-  ko:"기술기회 발굴에서 어느 개념이 유망한지는 LLM 심사자의 정성 판정에 의존하며, 그 판정이 실제 확산과 일치하는지는 검증되지 않는다. 본 연구는 과거 슬라이스(2015–2019)의 강화학습 문헌으로 기술지식그래프를 구축하고, 커뮤니티 탐지와 링크 예측을 거쳐 개념 7개를 서술한 뒤, 성격이 다른 두 심사자(Qwen3-8B·Gemini)로 각 개념의 유망성을 1–9로 판정하였다. 이어 각 개념의 미래 슬라이스(2021–2024) 확산을 분야 전체 성장 대비 상대값으로 측정해 정답으로 삼았다. 판정과 확산을 대조한 결과, 두 심사자가 갈린 유일한 개념에서 정답은 낮은 점수를 준 대형 모델이 아니라 소형 모델을 지지하였다. 나아가 서술에서 시대 식별 단서를 제거해 재판정하는 완화 실험에서, 대형 모델의 점수는 크게 이동하여 확산과의 순위 상관이 음에서 양으로 뒤집혔다 — 판정이 사후 지식에 오염되어 있었음을 시사한다. 마지막으로 확산 신호에 근거한 DVF 점수화는, 누수로 왜곡된 유망성 판정이 놓친 실제 1위 개념을 최상위로 되돌렸다. 표본이 작아 상관계수는 유의하지 않으며, 결과는 방향성으로 제시한다.",
-  en:"In technology opportunity discovery, which concept counts as promising rests on an LLM judge's qualitative verdict, and whether that verdict matches actual diffusion goes unverified. This study builds a technology knowledge graph from a past slice (2015–2019) of reinforcement-learning literature, narrates seven concepts through community detection and link prediction, and scores each for promise (1–9) with two judges of different scale (Qwen3-8B and Gemini). Each concept's future-slice (2021–2024) diffusion, normalized by field-wide growth, then serves as ground truth. On the one concept where the judges disagreed, the truth sided with the smaller model, not the larger one that scored it low. In a mitigation experiment that strips era-identifying cues from the descriptions and re-judges, the larger model's scores moved sharply and its rank correlation with diffusion flipped from negative to positive — evidence that the judgment was contaminated by hindsight. Finally, DVF scoring grounded in the diffusion signal restored to the top the very concept the leaked judgment had missed. The sample is small, so correlations are not significant and results are reported as directions."}},
+  ko:"기술 기회 탐지(Technology Opportunity Detection)에서 어떠한 개념이 유망(promising)한지는 LLM 심사자의 정성 판정에 의존하며, 그 판정과 실제 확산 간 일치 여부는 일반적으로 검증되지 않는다. 본 연구는 과거 슬라이스(2015–2019)의 RL 문헌으로 기술 지식 그래프(Technology Knowledge Graph)를 구축하고, 커뮤니티 탐지와 링크 예측을 거쳐 개념 7개를 서술한 뒤, 성격이 다른 두 심사자(Qwen3-8B, Gemini)로 각 개념의 유망성을 1에서 9 사이의 정수로 판정하였다. 이어 각 개념의 미래 슬라이스(2021–2024) 확산을 분야 전체 성장 대비 상대값으로 측정해 정답으로 삼았다. 판정과 확산을 대조한 결과, 두 심사자의 평이 나뉜 유일한 개념에서 정답은 낮은 점수를 준 대형 모델이 아니라 소형 모델을 지지하였다. 나아가 서술에서 시대 식별 단서를 제거해 재판정하는 완화 실험에서, 대형 모델의 점수는 크게 이동하여 확산과의 순위 상관이 음에서 양으로 반전되었다. 이는 판정이 사후 지식에 오염되어 있었음을 시사한다. 마지막으로 확산 신호를 근거로 넣은 DVF 점수화를 5회 반복한 결과, 네 개념의 총점 중앙값이 모두 9로 같아 유망성 판정과 마찬가지로 개념을 가르지 못하였다. 표본이 작아 상관계수는 유의하지 않으며, 결과는 방향성으로 제시한다.",
+  en:"In technology opportunity discovery, which concept counts as promising rests on an LLM judge's qualitative verdict, and whether that verdict matches actual diffusion goes unverified. This study builds a technology knowledge graph from a past slice (2015–2019) of reinforcement-learning literature, narrates seven concepts through community detection and link prediction, and scores each for promise (1–9) with two judges of different scale (Qwen3-8B and Gemini). Each concept's future-slice (2021–2024) diffusion, normalized by field-wide growth, then serves as ground truth. On the one concept where the judges disagreed, the truth sided with the smaller model, not the larger one that scored it low. In a mitigation experiment that strips era-identifying cues from the descriptions and re-judges, the larger model's scores moved sharply and its rank correlation with diffusion flipped from negative to positive — evidence that the judgment was contaminated by hindsight. Finally, DVF scoring with the diffusion signal injected as evidence, repeated five times, gave all four concepts the same median total (9): like the promise judgment, it failed to separate them. The sample is small, so correlations are not significant and results are reported as directions."}},
 
  {type:"text",num:"동기",
   h:{ko:"연구 동기",en:"Motivation"},
@@ -152,38 +152,38 @@ var SECTIONS=[
 
  {type:"text",num:"03",
   h:{ko:"미래 확산을 정답으로",en:"Diffusion as ground truth"},
-  p:{ko:["각 개념을 대표 용어로 표현하고, 미래 슬라이스에서 그 용어를 담은 문헌의 성장을 측정하였다. 2021–2024는 강화학습 전체가 커진 시기라 절대 성장은 거의 모든 개념에서 나타난다. 따라서 분야 전체 성장(약 1.71배)으로 나눈 상대값을 확산의 척도로 삼았다. 1.0을 넘으면 분야보다 빠르게 퍼진 것이다.",
-        "표는 두 판정과 실제 확산을 나란히 놓는다. 판정이 갈렸던 C05는 신뢰할 수 있는 개념 가운데 확산 1위였다(상대 확산 5.23배). 즉 이 개념에서 정답은 높게 본 소형 모델을 지지하고, 낮게 본 대형 모델을 반증한다. 나머지 개념들은 두 심사자가 모두 8 부근으로 뭉쳐 변별이 없었고, 유일하게 갈린 지점에서 소형 모델이 옳았다.",
+  p:{ko:["각 개념을 대표 용어로 표현하고, 미래 슬라이스에서 그 용어를 담은 문헌의 성장을 측정하였다. 2021–2024는 강화학습 전체가 커진 시기라 절대 성장은 거의 모든 개념에서 나타난다. 따라서 분야 전체 성장(약 1.73배)으로 나눈 상대값을 확산의 척도로 삼았다. 1.0을 넘으면 분야보다 빠르게 퍼진 것이다.",
+        "표는 두 판정과 실제 확산을 나란히 놓는다. 판정이 갈렸던 C05는 신뢰할 수 있는 개념 가운데 확산 1위였다(상대 확산 3.26배). 즉 이 개념에서 정답은 높게 본 소형 모델을 지지하고, 낮게 본 대형 모델을 반증한다. 나머지 개념들은 두 심사자가 모두 8 부근으로 뭉쳐 변별이 없었고, 유일하게 갈린 지점에서 소형 모델이 옳았다.",
         "다만 과거 편수가 극히 적은 세 개념(C04·C01·C03)은 성장비가 몇 편 차이로 요동쳐 신뢰도가 낮다. 이들을 저신뢰로 표시하고, 해석은 신뢰할 수 있는 네 개념에 무게를 둔다."],
-     en:["Each concept was represented by seed terms, and the growth of literature carrying those terms was measured in the future slice. Because RL as a whole grew over 2021–2024, absolute growth appears for nearly every concept; the relative value, divided by field-wide growth (~1.71×), is therefore taken as the measure of diffusion. Above 1.0 means it spread faster than the field.",
-        "The table sets the two judgments beside actual diffusion. C05, where the judges split, was the top diffuser among reliable concepts (relative diffusion 5.23×). On this concept the truth backs the small model that scored it high and rebuts the large model that scored it low. The remaining concepts clustered near 8 for both judges with no separation, and on the one point of disagreement the small model was right.",
+     en:["Each concept was represented by seed terms, and the growth of literature carrying those terms was measured in the future slice. Because RL as a whole grew over 2021–2024, absolute growth appears for nearly every concept; the relative value, divided by field-wide growth (~1.73×), is therefore taken as the measure of diffusion. Above 1.0 means it spread faster than the field.",
+        "The table sets the two judgments beside actual diffusion. C05, where the judges split, was the top diffuser among reliable concepts (relative diffusion 3.26×). On this concept the truth backs the small model that scored it high and rebuts the large model that scored it low. The remaining concepts clustered near 8 for both judges with no separation, and on the one point of disagreement the small model was right.",
         "Three concepts with very few past-window papers (C04, C01, C03) have growth ratios that swing on a handful of papers and are unreliable. These are flagged low-confidence, and interpretation weights the four reliable concepts."]},
   method:{ko:"seed 특이도. 지나치게 일반적인 용어는 확산을 과대 측정한다. 각 개념의 대표 용어는 서술 단계에서 함께 산출된 핵심어를 쓰되, 저편수 개념의 불안정성은 저신뢰 표시로 남긴다.",
      en:"Seed specificity. Overly generic terms overstate diffusion. Each concept's seed terms are those emitted alongside the narration, while the instability of low-count concepts is retained as a low-confidence flag."}},
 
  {type:"table",num:"04",which:"main",
   h:{ko:"판정과 확산",en:"Judgment and diffusion"},
-  after:{ko:"신뢰할 수 있는 네 개념만 보면, 실제 확산은 5.23배에서 2.47배까지 뚜렷이 갈리는데 두 심사자의 점수는 대부분 8에 머문다. 판정의 변별력 부재가 표에서 그대로 드러난다.",
-     en:"Among the four reliable concepts, actual diffusion ranges clearly from 5.23× down to 2.47×, yet the judges' scores mostly sit at 8. The judgment's lack of discrimination is visible in the table itself."}},
+  after:{ko:"신뢰할 수 있는 네 개념만 보면, 실제 확산은 3.26배에서 1.98배까지 뚜렷이 갈리는데 두 심사자의 점수는 대부분 8에 머문다. 판정의 변별력 부재가 표에서 그대로 드러난다.",
+     en:"Among the four reliable concepts, actual diffusion ranges clearly from 3.26× down to 1.98×, yet the judges' scores mostly sit at 8. The judgment's lack of discrimination is visible in the table itself."}},
 
  {type:"text",num:"05",
   h:{ko:"판정은 미래를 이미 알고 있었나",en:"Did the judgment already know the future?"},
   p:{ko:["점수가 7–8에 몰린 데는 이유가 있다. 이 개념들은 실제로 대부분 어느 정도 떴고, 그 사실이 심사 모델의 학습 데이터에 이미 담겨 있다. 모델은 미래를 모르는 과거 시점의 판단을 한 것이 아니라, 결과를 아는 상태에서 채점했을 수 있다. 과거→미래 대조의 청정성이 훼손되는 것이다.",
         "이를 검증하기 위해 완화 실험을 하였다. 각 개념의 서술에서 시대 식별 단서 — 고유한 시스템·데이터셋 이름, 성공을 암시하는 표현 — 를 제거해 추상적 서술로 다시 쓰고, 같은 심사자로 재판정하였다. 단서가 판정을 부풀리고 있었다면, 단서를 지운 뒤 점수는 내려가고 순위는 재편될 것이다.",
-        "대형 모델에서 효과는 뚜렷하였다. 게임 인공지능 개념은 원래 최고점(9)이었으나 고유명사를 지우자 최저권(3)으로 떨어졌다. 그 점수는 개념의 본질이 아니라 ‘이것이 그 유명한 사례’라는 사후 지식에서 나온 것이었다. 완화 후 대형 모델의 점수는 3에서 9까지 넓게 퍼졌고 — 변별력이 회복되었다 — 신뢰 하위표본에서 확산과의 순위 상관은 음(−0.63)에서 양(+0.32)으로 뒤집혔다. 반면 소형 모델은 완화 전후로 7–8에 머물러 거의 움직이지 않았다."],
+        "대형 모델에서 효과는 뚜렷하였다. 게임 인공지능 개념은 원래 최고점(9)이었으나 고유명사를 지우자 최저권(3)으로 떨어졌다. 그 점수는 개념의 본질이 아니라 ‘이것이 그 유명한 사례’라는 사후 지식에서 나온 것이었다. 완화 후 대형 모델의 점수는 3에서 9까지 넓게 퍼졌고 — 변별력이 회복되었다 — 신뢰 하위표본에서 확산과의 순위 상관은 음(−0.95)에서 양(+0.63)으로 뒤집혔다. 반면 소형 모델은 완화 전후로 7–8에 머물러 거의 움직이지 않았다."],
      en:["The clustering at 7–8 has a cause. Most of these concepts did in fact rise to some degree, and that fact is already in the judge model's training data. The model may not have judged from a past vantage blind to the future, but scored while knowing the outcome — corrupting the cleanliness of the past-to-future audit.",
         "To test this, a mitigation experiment was run. Each concept's description was rewritten to remove era-identifying cues — names of specific systems and datasets, phrasing that hints at success — into an abstract form, and re-judged by the same judges. If the cues had been inflating the judgment, removing them should lower the scores and rearrange the ranking.",
-        "In the large model the effect was clear. The game-AI concept, originally the top score (9), fell to the bottom band (3) once proper names were stripped: its score had come not from the concept's substance but from the hindsight that 'this is the famous case.' After mitigation the large model's scores spread from 3 to 9 — discrimination returned — and on the reliable subset its rank correlation with diffusion flipped from negative (−0.63) to positive (+0.32). The small model, by contrast, stayed at 7–8 before and after, barely moving."]}},
+        "In the large model the effect was clear. The game-AI concept, originally the top score (9), fell to the bottom band (3) once proper names were stripped: its score had come not from the concept's substance but from the hindsight that 'this is the famous case.' After mitigation the large model's scores spread from 3 to 9 — discrimination returned — and on the reliable subset its rank correlation with diffusion flipped from negative (−0.95) to positive (+0.63). The small model, by contrast, stayed at 7–8 before and after, barely moving."]}},
 
  {type:"fig2"},
 
  {type:"text",num:"06",
-  h:{ko:"데이터에 근거한 두 번째 관점",en:"A second view, grounded in data"},
+  h:{ko:"데이터를 근거로 넣어도 점수는 갈리지 않았다",en:"Grounding in data did not separate the scores"},
   p:{ko:["파이프라인의 유망성 판정과 별개로, 상위 개념을 제품·서비스 기회 브리프로 번역하고 수요성·실현성·사업성(DVF)으로 점수화하였다. 핵심은 순수 LLM 의견에 그치지 않고, 앞서 측정한 확산 신호를 수요 근거로 주입한 데 있다. 각 브리프의 수요 항목은 해당 개념의 상대 확산과 문헌 규모를 명시적으로 인용한다.",
-        "결과는 판정을 교정하는 방향으로 나타났다. DVF 총점 1위는 C05로, 원래 대형 모델의 유망성 판정에서 최저점을 받았던 바로 그 개념이다. 누수 있는 판정으로 기획했다면 버렸을 개념을, 데이터에 근거한 점수화는 최상위로 되돌렸다. 그리고 그 개념이 실제 확산 1위였다.",
+        "결과는 기대와 달랐다. 브리프 생성과 채점을 개념마다 5회 반복하자, 네 개념의 DVF 총점 중앙값은 모두 9로 같았다. 평균도 9.0–9.4 범위에 있었고, 그 차이는 표준편차(최대 1.14) 안에 들었다. 한 번 실행한 결과에서는 특정 개념이 1위로 보였으나, 반복하자 그 순위는 사라졌다. 확산 신호를 근거로 넣었지만, DVF 점수화 역시 유망성 판정처럼 개념을 가르지 못한 것이다.",
         "실현성 점수가 네 개념 모두 낮게(2) 수렴한 점도 기록해 둘 만하다. 강화학습을 실제 제품으로 옮길 때의 공통 장벽 — 시뮬레이션과 현실의 격차, 안전 인증, 하이퍼파라미터 민감성 — 을 점수화가 일관되게 짚었다."],
      en:["Apart from the pipeline's promise judgment, the top concepts were translated into product/service opportunity briefs and scored on Desirability, Feasibility, and Viability (DVF). The point is that these do not rest on model opinion alone: the diffusion signal measured earlier is injected as demand evidence, and each brief's demand field cites the concept's relative diffusion and literature volume explicitly.",
-        "The result ran in the direction of correcting the judgment. The top DVF total went to C05 — the very concept the large model's original promise judgment had scored lowest. A concept that a leaked judgment would have discarded, data-grounded scoring restored to the top. And that concept was the actual top diffuser.",
+        "The result was not what was expected. With brief generation and scoring repeated five times per concept, all four concepts had the same median DVF total, 9. Means fell within 9.0–9.4, a spread inside the standard deviation (up to 1.14). A single run had made one concept look like the leader; repetition erased that ranking. Despite the injected diffusion signal, DVF scoring, like the promise judgment, failed to separate the concepts.",
         "It is worth noting that feasibility converged low (2) for all four concepts. The scoring consistently identified the common barriers to turning RL into a product — the simulation-to-reality gap, safety certification, hyperparameter sensitivity."]}},
 
  {type:"table",which:"dvf",
@@ -191,15 +191,15 @@ var SECTIONS=[
 
  {type:"briefs",
   h:{ko:"기회 브리프 전문",en:"The opportunity briefs in full"},
-  intro:{ko:"각 브리프는 개념을 제품·서비스 관점으로 번역한 것으로, 수요 항목은 앞서 측정한 확산 신호를 명시적으로 인용한다. DVF 점수는 이 서술을 근거로 산출되었다.",
-    en:"Each brief translates a concept into product/service terms; the demand field cites the measured diffusion signal explicitly. The DVF scores are computed from these briefs."}},
+  intro:{ko:"각 브리프는 개념을 제품·서비스 관점으로 번역한 것으로, 수요 항목은 앞서 측정한 확산 신호를 명시적으로 인용한다. DVF 점수는 이 서술을 근거로 산출되었다. 각 개념에서 5회 생성한 브리프 가운데 총점이 중앙값인 것을 대표로 싣는다.",
+    en:"Each brief translates a concept into product/service terms; the demand field cites the measured diffusion signal explicitly. The DVF scores are computed from these briefs. For each concept, the brief whose total is the median of five generated briefs is shown."}},
 
  {type:"fig3"},
 
  {type:"table",num:"07",which:"corr",
   h:{ko:"완화 실험 요약",en:"Mitigation summary"},
-  after:{ko:"대형 모델은 완화로 확산과의 상관 부호가 뒤집혔고, 소형 모델은 거의 변하지 않았다. 더 큰 모델이 사후 지식을 더 많이 품고 있어 누수에 더 취약했다는 해석과, 더 작은 모델은 애초에 변별력이 낮았다는 해석이 함께 성립한다. 표본이 작아(n=4) 수치는 유의하지 않으며 방향으로만 읽는다.",
-     en:"Mitigation flipped the sign of the large model's correlation with diffusion, while the small model barely changed. Two readings hold together: the larger model, holding more hindsight, was more leakage-prone; the smaller model had little discrimination to begin with. With a small sample (n=4) the figures are not significant and are read only as directions."}},
+  after:{ko:"대형 모델은 완화로 확산과의 상관 부호가 뒤집혔고, 소형 모델의 상관은 전혀 변하지 않았다(−0.78 → −0.78). 더 큰 모델이 사후 지식을 더 많이 품고 있어 누수에 더 취약했다는 해석과, 더 작은 모델은 애초에 변별력이 낮았다는 해석이 함께 성립한다. 표본이 작아(n=4) 수치는 유의하지 않으며 방향으로만 읽는다.",
+     en:"Mitigation flipped the sign of the large model's correlation with diffusion, while the small model's did not change at all (−0.78 → −0.78). Two readings hold together: the larger model, holding more hindsight, was more leakage-prone; the smaller model had little discrimination to begin with. With a small sample (n=4) the figures are not significant and are read only as directions."}},
 
  {type:"text",num:"08",
   h:{ko:"연구 한계",en:"Limitations"},
@@ -207,21 +207,25 @@ var SECTIONS=[
         "첫째, 표본이 작다. 개념은 일곱이고 그중 신뢰할 수 있는 것은 넷뿐이다. 이 규모에서 상관계수는 몇 개 값에 크게 휘둘리며, 실제로 어떤 계수도 통계적 유의성에 이르지 못한다. 수치보다 표를 읽는 편이 더 신뢰할 만하다.",
         "둘째, 누수는 완화되었을 뿐 제거되지 않았다. 개념 자체가 시대 식별자이므로 — 특정 접근은 특정 연대를 가리킨다 — 고유명사를 지워도 심사자를 완전히 눈멀게 할 수는 없다. 완화는 부분적이며, 그 한계를 결과와 함께 남긴다.",
         "셋째, 확산은 유망성의 완전한 정답이 아니다. 문헌 성장은 확산의 대리지표일 뿐, 늦게 뜨는 개념이나 비인용 임팩트는 놓친다. 정답이라는 표현은 이 대리성 안에서만 유효하다.",
-        "넷째, 단일 분야의 축소 재현이다. 하나의 강화학습 세부 분야를 다뤘고, 원 방법의 무거운 구성요소는 무료 환경에 맞춘 경량 대체로 갈음하였다. 결과가 다른 분야나 완전한 파이프라인으로 그대로 옮겨지리라는 보장은 없다."],
+        "넷째, 단일 분야의 축소 재현이다. 하나의 강화학습 세부 분야를 다뤘고, 원 방법의 무거운 구성요소는 무료 환경에 맞춘 경량 대체로 갈음하였다. 결과가 다른 분야나 완전한 파이프라인으로 그대로 옮겨지리라는 보장은 없다.",
+        "다섯째, DVF 점수는 브리프 생성에 좌우된다. 같은 브리프를 반복 채점하면 점수가 거의 변하지 않았지만, 브리프를 새로 생성하면 같은 개념의 총점이 최대 3점까지 달라졌다. 따라서 단일 실행의 DVF 순위는 신뢰할 수 없으며, 본 리포트는 5회 반복의 통계를 제시한다.",
+        "여섯째, 확산 측정의 기반 데이터가 고정되어 있지 않다. 같은 쿼리도 실행 시점에 따라 편수가 달라진다. 실제로 쿼리를 바꾸지 않은 분야 기준선이 재실행 사이에 16,468편에서 16,197편으로 바뀌었으며, 이는 데이터 갱신에 따른 것으로 보인다. 수치를 정확히 재현하려면 조회 시점을 함께 기록해야 한다."],
      en:["The conclusions should be read against several limitations.",
         "First, the sample is small. There are seven concepts, of which only four are reliable. At this scale a correlation coefficient swings on a few values, and in fact none reaches statistical significance. Reading the table is more trustworthy than reading the numbers.",
         "Second, leakage is mitigated, not removed. Because a concept is itself an era identifier — a particular approach points to a particular period — stripping proper names cannot fully blind the judge. The mitigation is partial, and that limit is left standing with the results.",
         "Third, diffusion is not a complete ground truth for promise. Literature growth is only a proxy for diffusion; it misses late bloomers and non-citation impact. The word 'truth' holds only within this proxy.",
-        "Fourth, this is a single-domain, reduced reproduction. One RL subfield was studied, and the original method's heavier components were replaced with lightweight equivalents for the free environment. There is no guarantee the findings carry to other domains or to the full pipeline."]}},
+        "Fourth, this is a single-domain, reduced reproduction. One RL subfield was studied, and the original method's heavier components were replaced with lightweight equivalents for the free environment. There is no guarantee the findings carry to other domains or to the full pipeline.",
+        "Fifth, DVF scores depend on brief generation. Re-scoring the same brief barely changed the score, but regenerating the brief moved a concept's total by up to 3 points. A single-run DVF ranking is therefore unreliable, and this report presents statistics over five runs.",
+        "Sixth, the data behind the diffusion measure is not fixed. The same query returns different counts at different times: the field baseline, whose query was never changed, moved from 16,468 to 16,197 works between runs, apparently due to data updates. Exact reproduction requires recording the query date."]}},
 
  {type:"text",num:"09",
   h:{ko:"이 연구의 결론",en:"What this study concludes"},
-  p:{ko:["유망성 판정을 정답과 대조한 결과, 세 가지가 드러난다. 첫째, LLM의 단일 유망성 점수는 변별력이 약해 개념을 순위로 가르지 못한다. 둘째, 그 점수는 사후 지식에 오염되어 있으며, 시대 단서를 지우면 판정이 실제 확산 쪽으로 이동한다 — 특히 더 큰 모델에서 그러하다. 셋째, 확산 신호에 근거한 정량 점수화는 누수로 왜곡된 판정을 교정하여, 판정이 놓친 실제 유망 개념을 되살린다.",
-        "방법론적 함의는 실질적 발견만큼 유용하다. 더 큰 심사 모델이 언제나 나은 것은 아니었다. 큰 모델은 판정을 더 잘 내리는 만큼 사후 지식으로 더 크게 오염되었고, 작은 모델은 덜 오염된 대신 덜 갈랐다. 판정을 단일 모델에 맡기지 않고 정답과 데이터 근거로 감싸는 절제가, 이 규모에서는 타협이 아니라 옳은 선택이었다."],
-     en:["Auditing the promise judgment against ground truth reveals three things. First, a single LLM promise score has weak discrimination and fails to rank concepts. Second, that score is contaminated by hindsight, and stripping era cues moves the judgment toward actual diffusion — especially in the larger model. Third, quantitative scoring grounded in the diffusion signal corrects the leaked judgment, reviving the genuinely promising concept the judgment had missed.",
-        "The methodological implication is as useful as the substantive one. A larger judge model was not always better: the large model, judging more capably, was also more contaminated by hindsight, while the small model, less contaminated, discriminated less. Not leaving the judgment to a single model but wrapping it in ground truth and data evidence was, at this scale, not a compromise but the right choice."]},
-  method:{ko:"재현성. 모든 판정은 3회 반복의 중앙값으로, 서술·판정·완화·확산 측정을 단계별 파일로 분리해 각 단계를 독립적으로 재실행할 수 있다. 데이터는 공개 API에서 수집했고, 전체 코드와 실행 순서는 저장소 README에 있다.",
-     en:"Reproducibility. All judgments are medians of three runs, with narration, judgment, mitigation, and diffusion measurement split into per-stage files so each stage can be rerun independently. Data was collected from a public API; full code and run order are in the repository README."}},
+  p:{ko:["유망성 판정을 정답과 대조한 결과, 세 가지가 드러난다. 첫째, LLM의 단일 유망성 점수는 변별력이 약해 개념을 순위로 가르지 못한다. 둘째, 그 점수는 사후 지식에 오염되어 있으며, 시대 단서를 지우면 판정이 실제 확산 쪽으로 이동한다 — 특히 더 큰 모델에서 그러하다. 셋째, 확산 신호를 근거로 넣은 DVF 점수화도 반복 실행하면 개념 간 차이가 사라져, 판정의 변별력 부족을 보완하지 못한다.",
+        "방법론적 함의는 실질적 발견만큼 유용하다. 더 큰 심사 모델이 언제나 나은 것은 아니었다. 큰 모델은 판정을 더 잘 내리는 만큼 사후 지식으로 더 크게 오염되었고, 작은 모델은 덜 오염된 대신 덜 갈랐다. 판정을 단일 모델, 단일 실행에 맡기지 않고 정답과 대조하고 반복해 확인하는 절제가, 이 규모에서는 타협이 아니라 옳은 선택이었다. DVF 결과가 보여주듯, 한 번의 실행에서 나온 순위는 반복하면 사라질 수 있다."],
+     en:["Auditing the promise judgment against ground truth reveals three things. First, a single LLM promise score has weak discrimination and fails to rank concepts. Second, that score is contaminated by hindsight, and stripping era cues moves the judgment toward actual diffusion — especially in the larger model. Third, DVF scoring with the diffusion signal injected shows no difference between concepts once repeated, and so does not make up for the judgment's weak discrimination.",
+        "The methodological implication is as useful as the substantive one. A larger judge model was not always better: the large model, judging more capably, was also more contaminated by hindsight, while the small model, less contaminated, discriminated less. Not leaving the judgment to a single model or a single run, but auditing it against ground truth and repeating it, was at this scale not a compromise but the right choice. As the DVF result shows, a ranking from a single run can vanish on repetition."]},
+  method:{ko:"재현성. 유망성 판정은 3회 반복의 중앙값, DVF는 5회 반복의 중앙값·평균·표준편차로, 서술·판정·완화·확산 측정을 단계별 파일로 분리해 각 단계를 독립적으로 재실행할 수 있다. 데이터는 공개 API에서 수집했고, 전체 코드와 실행 순서는 저장소 README에 있다.",
+     en:"Reproducibility. Promise judgments are medians of three runs and DVF is summarized over five runs (median, mean, SD), with narration, judgment, mitigation, and diffusion measurement split into per-stage files so each stage can be rerun independently. Data was collected from a public API; full code and run order are in the repository README."}},
 
  {type:"table",which:"prov",
   h:{ko:"데이터 출처",en:"Data provenance"},
@@ -234,57 +238,57 @@ var FIG={
  fig1_cap:{ko:"<b>대부분 7–8에 몰리고, 오직 C05에서 갈린다.</b> 일곱 개념 중 다섯에서 두 심사자의 점수가 같다. 유일한 불일치인 C05에서 소형 모델은 7, 대형 모델은 4를 주었다. (각 개념 3회 판정의 중앙값)",
    en:"<b>Mostly clustered at 7–8, splitting only on C05.</b> On five of seven concepts the two judges match. On the sole disagreement, C05, the small model gave 7 and the large model 4. (Median of three runs per concept.)"},
  fig2_title:{ko:"그림 2. 누수 완화 전후의 대형 모델 판정",en:"Figure 2. The large model's judgment before and after mitigation"},
- fig2_cap:{ko:"<b>단서를 지우자 점수가 실제 확산 쪽으로 이동한다.</b> 신뢰할 수 있는 네 개념을 확산순으로 놓았다. 원래 판정은 실제 1위 C05를 최저(4)로 보았으나 완화 후 8로 올렸고, 실제 중위 C02는 9에서 3으로 내렸다. 막대 척도가 서로 달라 절대 높이가 아닌 개념 간 순위를 본다.",
-   en:"<b>Once cues are removed, scores move toward actual diffusion.</b> The four reliable concepts are ordered by diffusion. The original judgment scored the true top, C05, lowest (4); after mitigation it rose to 8, while the mid-ranked C02 fell from 9 to 3. Bar scales differ, so read the ranking across concepts, not absolute heights."},
+ fig2_cap:{ko:"<b>단서를 지우자 점수가 실제 확산 쪽으로 이동한다.</b> 신뢰할 수 있는 네 개념을 확산순으로 놓았다. 원래 판정은 실제 1위 C05를 최저(4)로 보았으나 완화 후 8로 올렸고, 실제 최하위 C02는 9에서 3으로 내렸다. 막대 척도가 서로 달라 절대 높이가 아닌 개념 간 순위를 본다.",
+   en:"<b>Once cues are removed, scores move toward actual diffusion.</b> The four reliable concepts are ordered by diffusion. The original judgment scored the true top, C05, lowest (4); after mitigation it rose to 8, while the lowest-ranked C02 fell from 9 to 3. Bar scales differ, so read the ranking across concepts, not absolute heights."},
  fig3_title:{ko:"그림 3. LLM 유망성 · DVF · 실제 확산",en:"Figure 3. LLM promise · DVF · actual diffusion"},
- fig3_cap:{ko:"<b>데이터 근거 DVF가 판정을 교정한다.</b> C05는 원래 LLM 유망성에서 최저였으나 DVF 총점에서 최고이며, 실제 확산에서도 1위다. 파이프라인의 판정만 유독 이 개념을 낮게 보았다. 세 지표의 척도가 서로 다르다.",
-   en:"<b>Data-grounded DVF corrects the judgment.</b> C05 was lowest on the original LLM promise yet highest on DVF total, and first on actual diffusion. Only the pipeline's judgment singled it out as low. The three measures use different scales."}
+ fig3_cap:{ko:"<b>DVF도 개념을 가르지 못한다.</b> 신뢰할 수 있는 네 개념을 확산순으로 놓았다. 실제 확산은 3.26배에서 1.98배로 갈리지만, DVF 총점 중앙값(5회 반복)은 네 개념 모두 9다. 원래 LLM 유망성 역시 실제 1위 C05만 낮게(4) 보았을 뿐 나머지는 8–9에 몰렸다. 세 지표의 척도가 서로 다르다.",
+   en:"<b>DVF does not separate the concepts either.</b> The four reliable concepts are ordered by diffusion. Actual diffusion ranges from 3.26× to 1.98×, yet the median DVF total (five runs) is 9 for all four. The original LLM promise likewise scored only the true top, C05, low (4) and clustered the rest at 8–9. The three measures use different scales."}
 };
 
 var TABLE={
  head:{ko:["개념","Qwen","Gemini","과거편수","미래편수","성장","상대확산"],en:["Concept","Qwen","Gemini","Past n","Future n","Growth","Rel. diff."]},
  rows:{
-  ko:[["C05 — 표본효율 정책최적화","7","4","578","5,176","8.96×","5.23×"],
-      ["C06 — 최적제어 actor-critic","8","8","368","2,257","6.13×","3.59×"],
-      ["C02 — 게임 인공지능","8","9","2,928","15,317","5.23×","3.06×"],
-      ["C00 — 로보틱스 조작","8","8","832","3,516","4.23×","2.47×"],
-      ["C04 — 멀티에이전트 *","8","8","7","84","12.0×","7.01×"],
-      ["C01 — 밴딧/regret *","7","7","6","6","1.00×","0.58×"],
-      ["C03 — Dec-POMDP *","7","7","42","40","0.95×","0.56×"]],
-  en:[["C05 — sample-efficient policy opt.","7","4","578","5,176","8.96×","5.23×"],
-      ["C06 — optimal-control actor-critic","8","8","368","2,257","6.13×","3.59×"],
-      ["C02 — game AI","8","9","2,928","15,317","5.23×","3.06×"],
-      ["C00 — robotic manipulation","8","8","832","3,516","4.23×","2.47×"],
-      ["C04 — multi-agent *","8","8","7","84","12.0×","7.01×"],
-      ["C01 — bandit/regret *","7","7","6","6","1.00×","0.58×"],
-      ["C03 — Dec-POMDP *","7","7","42","40","0.95×","0.56×"]]},
- note:{ko:"성장 = 미래편수 / 과거편수. 상대확산 = 성장 / 분야 전체 성장(2015–19 대비 2021–24, 16,468 → 28,173편, 1.71×). * 과거 편수가 적어 성장비가 불안정한 저신뢰 개념.",
-   en:"Growth = future n / past n. Rel. diff. = growth / field-wide growth (16,468 → 28,173 works, 1.71×). * Low-confidence: too few past-window papers for a stable growth ratio."},
+  ko:[["C05 — 표본효율 정책최적화","7","4","295","1,665","5.64×","3.26×"],
+      ["C06 — 최적제어 actor-critic","8","8","133","515","3.87×","2.24×"],
+      ["C00 — 로보틱스 조작","8","8","213","774","3.63×","2.10×"],
+      ["C02 — 게임 인공지능","8","9","704","2,410","3.42×","1.98×"],
+      ["C04 — 멀티에이전트 *","8","8","4","37","9.25×","5.34×"],
+      ["C03 — Dec-POMDP *","7","7","19","17","0.89×","0.52×"],
+      ["C01 — 밴딧/regret *","7","7","1","0","0.00×","0.00×"]],
+  en:[["C05 — sample-efficient policy opt.","7","4","295","1,665","5.64×","3.26×"],
+      ["C06 — optimal-control actor-critic","8","8","133","515","3.87×","2.24×"],
+      ["C00 — robotic manipulation","8","8","213","774","3.63×","2.10×"],
+      ["C02 — game AI","8","9","704","2,410","3.42×","1.98×"],
+      ["C04 — multi-agent *","8","8","4","37","9.25×","5.34×"],
+      ["C03 — Dec-POMDP *","7","7","19","17","0.89×","0.52×"],
+      ["C01 — bandit/regret *","7","7","1","0","0.00×","0.00×"]]},
+ note:{ko:"성장 = 미래편수 / 과거편수. 상대확산 = 성장 / 분야 전체 성장(2015–19 대비 2021–24, 16,197 → 28,053편, 1.73×). 편수는 분야 기준선과 같은 topic 필터(T10462)로 셌다. * 과거 편수가 적어 성장비가 불안정한 저신뢰 개념.",
+   en:"Growth = future n / past n. Rel. diff. = growth / field-wide growth (16,197 → 28,053 works, 1.73×). Counts use the same topic filter (T10462) as the field baseline. * Low-confidence: too few past-window papers for a stable growth ratio."},
  highlightRow:1
 };
 
 var TABLE2={
  head:{ko:["심사자","원래 상관 ρ","완화 후 상관 ρ"],en:["Judge","Original ρ","Mitigated ρ"]},
- rows:{ko:[["Gemini (대형)","−0.63","+0.32"],["Qwen (소형)","−0.78","−0.26"]],
-   en:[["Gemini (large)","−0.63","+0.32"],["Qwen (small)","−0.78","−0.26"]]},
+ rows:{ko:[["Gemini (대형)","−0.95","+0.63"],["Qwen (소형)","−0.78","−0.78"]],
+   en:[["Gemini (large)","−0.95","+0.63"],["Qwen (small)","−0.78","−0.78"]]},
  note:{ko:"신뢰할 수 있는 네 개념 기준 Spearman 순위 상관. n=4로 유의하지 않으며 방향으로만 읽는다.",
    en:"Spearman rank correlation on the four reliable concepts. With n=4 it is not significant and is read only as a direction."},
  highlightRow:1
 };
 
 var TABLE3={
- head:{ko:["개념","D 수요성","F 실현성","V 사업성","DVF 총점"],en:["Concept","D","F","V","DVF total"]},
+ head:{ko:["개념","D 수요성","F 실현성","V 사업성","총점 중앙값","총점 평균","총점 표준편차"],en:["Concept","D","F","V","Total median","Total mean","Total SD"]},
  rows:{
-  ko:[["C05 — 표본효율 정책최적화","5","2","3","10"],
-      ["C00 — 로보틱스 조작","4","2","3","9"],
-      ["C06 — 최적제어 actor-critic","3","2","3","8"],
-      ["C02 — 게임 인공지능","4","2","2","8"]],
-  en:[["C05 — sample-efficient policy opt.","5","2","3","10"],
-      ["C00 — robotic manipulation","4","2","3","9"],
-      ["C06 — optimal-control actor-critic","3","2","3","8"],
-      ["C02 — game AI","4","2","2","8"]]},
- note:{ko:"각 축 1–5, 확산 신호를 수요·실현성 근거로 주입해 산출. DVF 1위 C05는 원래 LLM 유망성 판정에서 최저점을 받은 개념이자 실제 확산 1위다. 실현성(F)이 네 개념 모두 2로 수렴한 것은 sim-to-real·안전 인증·하이퍼파라미터 민감성이라는 공통 장벽을 반영한다.",
-   en:"Each axis 1–5, computed with the diffusion signal injected as demand/feasibility evidence. The DVF leader C05 is the concept the original LLM promise judgment scored lowest, and the top actual diffuser. Feasibility (F) converged to 2 for all four, reflecting the shared barriers of sim-to-real transfer, safety certification, and hyperparameter sensitivity."},
+  ko:[["C05 — 표본효율 정책최적화","4","2","3","9","9.0","0.71"],
+      ["C06 — 최적제어 actor-critic","4","2","3","9","9.0","0.00"],
+      ["C00 — 로보틱스 조작","4","2","3","9","9.4","1.14"],
+      ["C02 — 게임 인공지능","4","2","3","9","9.0","0.00"]],
+  en:[["C05 — sample-efficient policy opt.","4","2","3","9","9.0","0.71"],
+      ["C06 — optimal-control actor-critic","4","2","3","9","9.0","0.00"],
+      ["C00 — robotic manipulation","4","2","3","9","9.4","1.14"],
+      ["C02 — game AI","4","2","3","9","9.0","0.00"]]},
+ note:{ko:"각 축 1–5. 개념마다 브리프 생성과 채점을 5회 반복했으며, D·F·V는 축별 중앙값, 총점은 중앙값·평균·표본 표준편차(n−1)다. 네 개념 모두 총점 중앙값이 9로 같아 DVF로는 순위를 가를 수 없다. 실현성(F)이 네 개념 모두 2로 수렴한 것은 sim-to-real·안전 인증·하이퍼파라미터 민감성이라는 공통 장벽을 반영한다.",
+   en:"Each axis 1–5. Brief generation and scoring were repeated five times per concept; D, F, V are per-axis medians, and the total is given as median, mean, and sample SD (n−1). All four share a median total of 9, so DVF cannot rank them. Feasibility (F) converged to 2 for all four, reflecting the shared barriers of sim-to-real transfer, safety certification, and hyperparameter sensitivity."},
  highlightRow:1
 };
 
@@ -294,46 +298,46 @@ var TABLE_PROV={
  head:{ko:["결과 파일","담긴 내용","리포트 위치"],en:["Result file","Contents","Used in"]},
  rows:{
   ko:[["judge_agreement.json","두 심사자 점수 · Spearman 0.907 · 일치율 71%","2절 · 그림 1"],
-      ["diffusion.json","분야 성장 1.71× · 개념별 과거/미래 편수","4절 표"],
+      ["diffusion.json","분야 성장 1.73× · 개념별 과거/미래 편수","4절 표"],
       ["three_way.json","판정 vs 확산 · 신뢰도 플래그","4절 · 그림 3"],
       ["leakage_compare.json","원래/블라인드 판정 · 상관 부호 반전","5절 · 그림 2 · 7절"],
-      ["briefs.json","기회 브리프 전문 · DVF 점수","6절 표 · 브리프"]],
+      ["briefs.json","기회 브리프 전문 · DVF 5회 반복 통계","6절 표 · 브리프 · 그림 3"]],
   en:[["judge_agreement.json","Two-judge scores · Spearman 0.907 · 71% match","§2 · Fig. 1"],
-      ["diffusion.json","Field growth 1.71× · per-concept past/future n","§4 table"],
+      ["diffusion.json","Field growth 1.73× · per-concept past/future n","§4 table"],
       ["three_way.json","Judgment vs diffusion · reliability flags","§4 · Fig. 3"],
       ["leakage_compare.json","Original/blind judgment · sign flip","§5 · Fig. 2 · §7"],
-      ["briefs.json","Full opportunity briefs · DVF scores","§6 table · briefs"]]}
+      ["briefs.json","Full opportunity briefs · DVF stats over five runs","§6 table · briefs · Fig. 3"]]}
 };
 
 var BRIEFS=[
- {id:"C05",name:{ko:"C05 — 표본효율 정책최적화",en:"C05 — sample-efficient policy optimization"},dvf:"D5 · F2 · V3 = 10",growth:"5.23×",
+ {id:"C05",name:{ko:"C05 — 표본효율 정책최적화",en:"C05 — sample-efficient policy optimization"},dvf:"D4 · F2 · V3 = 9",growth:"3.26×",
   fields:{
-   user:{ko:"연속제어 시스템을 구축하는 ML 엔지니어링 팀, 로보틱스 개발자, 산업 자동화 기업.",en:"ML engineering teams, robotics developers, and industrial automation firms building continuous control systems."},
-   jtbd:{ko:"데이터 수집이 비싸거나 느리거나 위험한 고위험·물리 제약 환경에서 복잡한 심층 강화학습 모델을 학습시킨다.",en:"Train complex deep RL models in high-stakes or physically constrained environments where data collection is expensive, slow, or risky."},
-   mvp:{ko:"정책 그래디언트와 off-policy 크리틱을 결합한 하이브리드 알고리즘을 구현한 라이브러리/플러그인으로, 표준 연속제어 환경에서 표본 절감을 벤치마크.",en:"A library/plugin implementing the hybrid policy-gradient/off-policy-critic algorithm, benchmarked on standard continuous-control environments to show sample reduction."},
-   demand:{ko:"RL 분야 평균의 5.234배로 확산, 과거 문헌 578편 — 표본효율 병목 해결에 대한 강한 관심.",en:"Spreading at 5.234× the RL field average with 578 past-window papers — strong interest in solving sample-efficiency bottlenecks."},
-   risk:{ko:"on-policy 그래디언트와 off-policy 크리틱 결합의 높은 복잡성·하이퍼파라미터 민감성. 상용 안정성·산업 파이프라인 통합·독점 환경 성능은 추측이며 데이터 근거 없음.",en:"High complexity and hyperparameter sensitivity in combining on-policy gradients with off-policy critics. Commercial stability, pipeline integration, and proprietary-environment gains are speculative and not data-backed."}}},
- {id:"C00",name:{ko:"C00 — 로보틱스 조작",en:"C00 — robotic manipulation"},dvf:"D4 · F2 · V3 = 9",growth:"2.47×",
+   user:{ko:"데이터 수집이 비싸거나 느린 환경에서 심층 강화학습 모델을 학습시키는 로보틱스 엔지니어, 자율 시스템 개발자, ML 실무자.",en:"Robotics engineers, autonomous-systems developers, and ML practitioners training deep RL models where data collection is expensive or slow."},
+   jtbd:{ko:"복잡한 실제 환경에서 연속제어 정책을 학습시킬 때, 정책 안정성을 해치지 않으면서 필요한 표본 수를 크게 줄여 학습 비용을 낮추고 배치를 앞당긴다.",en:"When training continuous-control policies in complex real-world domains, drastically cut the samples required to lower training cost and speed deployment without sacrificing policy stability."},
+   mvp:{ko:"정책 그래디언트와 off-policy 크리틱을 결합한 하이브리드 구조를 구현한 참조 라이브러리/플러그인으로, 표준 연속제어 과제에서 기존 베이스라인과 비교 벤치마크.",en:"A reference library/plugin implementing the hybrid policy-gradient and off-policy-critic architecture, benchmarked on standard continuous-control tasks against traditional baselines."},
+   demand:{ko:"RL 분야 평균 대비 상대 확산 3.259배, 과거 문헌 295편 — 빠르게 가속하는 연구 모멘텀.",en:"Relative diffusion 3.259× the RL field average, backed by 295 past-window papers — rapidly accelerating research momentum."},
+   risk:{ko:"기술 성숙도가 초기 단계이며, 정책 그래디언트와 off-policy 크리틱의 결합은 강한 비선형 환경에서 불안정성과 하이퍼파라미터 민감성을 낳을 수 있다. 상용 비용 절감과 실제 배치 가능성에 대한 주장은 확산 데이터로 측정되지 않은 추측.",en:"Nascent maturity; combining policy gradients with off-policy critics can introduce instability and hyperparameter sensitivity in highly nonlinear environments. Commercial cost-reduction and real-world viability claims are speculative, not measured by the diffusion data."}}},
+ {id:"C06",name:{ko:"C06 — 최적제어 actor-critic",en:"C06 — optimal-control actor-critic"},dvf:"D4 · F2 · V3 = 9",growth:"2.24×",
   fields:{
-   user:{ko:"물류·창고·첨단 제조의 자동화 엔지니어링 관리자 및 운영 책임자.",en:"Automation engineering managers and operations directors in logistics, warehousing, and advanced manufacturing."},
-   jtbd:{ko:"새 품목마다 수작업 프로그래밍 없이, 비정형·예측 불가한 물체 변이를 다루는 로봇 분류·조립 라인을 빠르게 배치·유지한다.",en:"Quickly deploy and maintain robotic sorting/assembly lines that handle unstructured, unpredictable object variation without hand-coding each new item."},
-   mvp:{ko:"단일 로봇 팔 셀에 sim-to-real RL 파이프라인을 올려, 무작위로 담긴 신규 소비재를 자율 분류.",en:"A sim-to-real RL pipeline on a single robotic-arm cell that autonomously sorts a randomized basket of novel consumer goods."},
-   demand:{ko:"상대 확산 2.47배, 과거 문헌 832편 — 빠른 확산과 학술-산업 관심 증가. 상용 견인은 연구 속도에서 유추한 추측.",en:"Relative diffusion 2.47× with 832 past-window papers — rapid dissemination and growing academic-to-industrial interest. Commercial pull is inferred from research velocity, speculative."},
-   risk:{ko:"높은 sim-to-real 전이 위험, 탐색적 학습 중 하드웨어 마모, 사람 인접 작업공간의 안전 인증 장벽.",en:"High sim-to-real transfer risk, hardware wear during exploratory learning, and safety-certification barriers in human-adjacent workspaces."}}},
- {id:"C06",name:{ko:"C06 — 최적제어 actor-critic",en:"C06 — optimal-control actor-critic"},dvf:"D3 · F2 · V3 = 8",growth:"3.59×",
+   user:{ko:"복잡한 비선형 기계를 다루는 산업 자동화 엔지니어, 로보틱스 개발자, 항공우주 시스템 설계자.",en:"Industrial automation engineers, robotics developers, and aerospace systems architects managing complex nonlinear machinery."},
+   jtbd:{ko:"동역학과 외란을 알 수 없는 복잡한 시스템을, 수작업 시스템 모델링에 많은 엔지니어링 시간을 들이지 않고 최적·내고장성 상태로 제어한다.",en:"Maintain optimal, fault-tolerant control of complex systems with unknown dynamics and disturbances, without extensive engineering hours on manual system modeling."},
+   mvp:{ko:"시뮬레이션 비선형 모터 또는 로봇 팔 벤치마크에서 actor-critic 최적제어를 구현한 소프트웨어 라이브러리로, 온라인 데이터 기반 적응을 시연.",en:"A software library implementing actor-critic optimal control on a simulated nonlinear motor or robotic-arm benchmark, demonstrating online data-driven adaptation."},
+   demand:{ko:"RL 분야 전체 대비 상대 확산 2.236배, 과거 문헌 133편 — 높은 모멘텀.",en:"Relative diffusion 2.236× the broader RL field, backed by 133 past-window papers — high momentum."},
+   risk:{ko:"높은 수학적 복잡성, 안전 필수 산업 환경에서의 안전성·안정성 검증 문제, 고주파 하드웨어 제어 루프에서의 지연 한계 가능성.",en:"High mathematical complexity, safety/stability verification in safety-critical industrial settings, and possible latency limits in high-frequency hardware loops."}}},
+ {id:"C00",name:{ko:"C00 — 로보틱스 조작",en:"C00 — robotic manipulation"},dvf:"D4 · F2 · V3 = 9",growth:"2.10×",
   fields:{
-   user:{ko:"산업 자동화 엔지니어, 로보틱스 개발자, 항공우주 제어 시스템 설계자.",en:"Industrial automation engineers, robotics developers, and aerospace control-systems architects."},
-   jtbd:{ko:"예측 불가한 환경의 고정밀 기계를, 수개월의 수동 모델 튜닝 없이 최적 제어·안정 상태로 유지해 커미셔닝 시간과 다운타임을 줄인다.",en:"Keep high-precision machinery under optimal control in unpredictable environments without months of manual model tuning, cutting commissioning time and downtime."},
-   mvp:{ko:"시뮬레이션 비선형 모터/로봇 팔용 베이스라인 actor-critic 신경 제어기를 구현해, 수렴 속도·외란 억제를 PID·MPC와 비교.",en:"A baseline actor-critic neural controller for a simulated nonlinear motor/arm, benchmarking convergence and disturbance rejection against PID/MPC."},
-   demand:{ko:"상대 확산 3.585배, 과거 문헌 368편. 상용 수요는 학술 확산 지표에서만 유추한 추측(직접 판매 데이터 없음).",en:"Relative diffusion 3.585× with 368 past-window papers. Commercial demand is inferred solely from academic diffusion, speculative (no direct sales data)."},
-   risk:{ko:"실시간 신경망 추론의 안전 보장, 물리 시스템 온라인 학습 중 통제되지 않은 탐색 위험, 항공우주 등 안전 필수 분야의 인증 장벽.",en:"Real-time NN inference safety, unconstrained online-exploration risk in physical systems, and certification hurdles in safety-critical domains like aerospace."}}},
- {id:"C02",name:{ko:"C02 — 게임 인공지능",en:"C02 — game AI"},dvf:"D4 · F2 · V2 = 8",growth:"3.06×",
+   user:{ko:"제조·물류·창고 분야의 자동화 엔지니어와 운영 관리자.",en:"Automation engineers and operations managers in manufacturing, logistics, and warehousing."},
+   jtbd:{ko:"새 품목마다 수작업 프로그래밍이나 전용 지그를 설계하지 않고, 다품종·비정형 물체를 다루는 로봇 작업 셀을 빠르게 배치하고 적응시킨다.",en:"Quickly deploy and adapt robotic workcells to handle high-mix, unstructured objects without extensive manual programming or custom fixtures for every new item."},
+   mvp:{ko:"단일 로봇 팔에 sim-to-real 학습 파이프라인을 올려, 무작위로 담긴 처음 보는 생활용품·산업용 물체를 자율적으로 집어 분류.",en:"A sim-to-real training pipeline on a single robotic arm that autonomously grasps and sorts a randomized basket of unseen household or industrial objects."},
+   demand:{ko:"분야 평균 대비 상대 확산 2.098배, 과거 문헌 213편 — 빠른 가속과 높은 학술 모멘텀. 상용 시장 수요는 이 문헌 지표로 측정되지 않은 추측.",en:"Relative diffusion 2.098× the field average with 213 past-window papers — rapid acceleration and high academic momentum. Commercial market demand is speculative, not measured by this publication metric."},
+   risk:{ko:"sim-to-real 격차, 접촉이 많은 물리 상호작용에서의 안전 보장, 극단적인 물체 다양성을 다루는 데 필요한 표본 복잡도에 따른 높은 기술 위험.",en:"High risk from the sim-to-real gap, safety guarantees in contact-rich physical interaction, and the sample complexity of extreme object variability."}}},
+ {id:"C02",name:{ko:"C02 — 게임 인공지능",en:"C02 — game AI"},dvf:"D4 · F2 · V3 = 9",growth:"1.98×",
   fields:{
-   user:{ko:"AI 연구소, 기업 자동화 설계자, 고급 의사결정 에이전트를 찾는 시뮬레이션 중심 산업(물류·자율 시스템 등).",en:"AI research labs, enterprise automation architects, and simulation-heavy industries seeking advanced decision-making agents."},
-   jtbd:{ko:"복잡한 운영 시스템에서, 광범위한 수동 규칙 코딩 없이 동적 환경의 전략적 의사결정을 자동화한다.",en:"Automate strategic decision-making in dynamic environments for complex operational systems, without extensive manual rule-coding."},
-   mvp:{ko:"특정 기업의 자원 배분·라우팅 문제를 푸는 전용 시뮬레이션 테스트베드 + 확장 가능한 심층 RL 파이프라인.",en:"A dedicated simulation testbed plus a scalable deep-RL pipeline solving a specific enterprise resource-allocation or routing problem."},
-   demand:{ko:"상대 확산 3.058배, 과거 문헌 약 2,928편 — 강한 시장 모멘텀. 연구 테스트베드를 넘어선 구체 상용 응용은 추측.",en:"Relative diffusion 3.058× with ~2,928 past-window papers — strong momentum. Commercial applications beyond research testbeds are speculative."},
-   risk:{ko:"높은 학습 계산량, 실제 배치에서의 표본 비효율, 시뮬레이션-현실 전이 격차. 규제 장벽은 추측이며 데이터 근거 없음.",en:"High training compute, real-world sample inefficiency, and sim-to-real transfer gaps. Regulatory barriers are speculative and not data-backed."}}}
+   user:{ko:"복잡한 다변수 의사결정을 최적화하려는 기업 AI 엔지니어링 리더, 자율 시스템 개발자, 운영과학(OR) 팀.",en:"Enterprise AI engineering leaders, autonomous-system developers, and operations-research teams optimizing complex multi-variable decisions."},
+   jtbd:{ko:"동적이고 예측 불가한 환경에서, 방대한 수작업 규칙 코딩 없이 복잡한 전략을 스스로 익히는 에이전트를 배치한다.",en:"Deploy self-learning agents that master intricate strategies in dynamic, unpredictable environments without exhaustive manual rule-programming."},
+   mvp:{ko:"특정 도메인용 멀티에이전트 RL 모델을 베이스라인 휴리스틱 시나리오와 비교해 수렴 속도와 의사결정 품질을 측정하는 전용 시뮬레이션 샌드박스.",en:"A specialized simulation sandbox testing a domain-specific multi-agent RL model against a baseline heuristic scenario, measuring convergence speed and decision quality."},
+   demand:{ko:"RL 분야 전체 대비 상대 확산 1.977배, 과거 문헌 704편 — 강한 모멘텀.",en:"Relative diffusion 1.977× the broader RL field, with 704 past-window papers — strong momentum."},
+   risk:{ko:"높은 학습 계산량, 실제 배치에서의 표본 비효율, 심층 RL 의사결정의 낮은 해석 가능성이 성숙도와 신뢰성의 큰 장벽.",en:"High training compute, sample inefficiency in real deployments, and limited interpretability of deep RL decisions pose major maturity and reliability barriers."}}}
 ];
 
 var state={lang:"ko"};
@@ -420,8 +424,8 @@ var COL={qwen:"#8a94a0",gemini:"#2f5d50",truth:"#a9761a",dvf:"#2f5d50",promise:"
 function legend(svg,items,x,y){var gx=x;items.forEach(function(it){svg.appendChild(mk("rect",{x:gx,y:y-9,width:11,height:11,fill:it.c}));var t=mk("text",{x:gx+16,y:y,"class":"legend-txt"});t.textContent=it.l;svg.appendChild(t);gx+=16+it.l.length*7.2+18;});}
 
 function drawScores(svg){svg.innerHTML="";var W=680,H=300,padL=30,padR=16,padT=34,padB=40;
- var labels=["C05","C06","C02","C00","C04","C01","C03"];
- var qwen=[7,8,8,8,8,7,7],gemini=[4,8,9,8,8,7,7];
+ var labels=["C05","C06","C00","C02","C04","C03","C01"];
+ var qwen=[7,8,8,8,8,7,7],gemini=[4,8,8,9,8,7,7];
  var yMax=9,plotW=W-padL-padR,plotH=H-padT-padB,n=labels.length,groupW=plotW/n,barW=groupW*0.30;
  function y(v){return padT+(1-v/yMax)*plotH;}
  [0,3,6,9].forEach(function(t){var gy=y(t);svg.appendChild(mk("line",{x1:padL,x2:W-padR,y1:gy,y2:gy,"class":"grid"}));var tx=mk("text",{x:padL-6,y:gy+4,"text-anchor":"end","class":"tick-txt"});tx.textContent=t;svg.appendChild(tx);});
@@ -433,12 +437,12 @@ function drawScores(svg){svg.innerHTML="";var W=680,H=300,padL=30,padR=16,padT=3
 }
 
 function drawTriple(mode,svg){svg.innerHTML="";var W=680,H=300,padL=30,padR=16,padT=34,padB=40;
- var labels=["C05","C06","C02","C00"];
- var diffusion=[5.23,3.59,3.06,2.47];
+ var labels=["C05","C06","C00","C02"];
+ var diffusion=[3.26,2.24,2.10,1.98];
  var s1,s2,s1max,s2max,leg;
- if(mode==="blind"){s1=[4,8,9,8];s2=[8,9,3,8];s1max=9;s2max=9;
+ if(mode==="blind"){s1=[4,8,8,9];s2=[8,9,8,3];s1max=9;s2max=9;
    leg=[{l:state.lang==="ko"?"원래":"original",c:COL.qwen},{l:state.lang==="ko"?"완화":"blind",c:COL.gemini},{l:state.lang==="ko"?"확산":"diffusion",c:COL.truth}];}
- else{s1=[4,8,9,8];s2=[10,8,8,9];s1max=9;s2max=15;
+ else{s1=[4,8,8,9];s2=[9,9,9,9];s1max=9;s2max=15;
    leg=[{l:state.lang==="ko"?"LLM 유망성":"LLM promise",c:COL.promise},{l:"DVF",c:COL.dvf},{l:state.lang==="ko"?"확산":"diffusion",c:COL.truth}];}
  var dmax=6,plotW=W-padL-padR,plotH=H-padT-padB,n=labels.length,groupW=plotW/n,barW=groupW*0.22;
  function h(v,mx){return v/mx*plotH;}
