@@ -1,4 +1,4 @@
-# Prescriptive Technology Opportunity Discovery — Reduced Pipeline with Promise-Judgment Validation
+Reduced Pipeline with Promise-Judgment Validation
 
 ![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
 ![pandas](https://img.shields.io/badge/pandas-3.0.6-150458?logo=pandas&logoColor=white)
